@@ -1,5 +1,5 @@
-// actual 404 page FOR SEO
-
 export default function _(){
-  return<>404</>
+  return<i id='loading'>
+    <p>404<br/>{"This page doesn't exist."}</p>
+  </i>
 }

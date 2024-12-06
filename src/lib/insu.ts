@@ -7,21 +7,20 @@ if(!DB_HOST||!DB_NAME||!DB_CLCT||!DB_USER){
 
 export const con = new MongoClient(DB_HOST,{serverApi:{version:ServerApiVersion.v1,strict:true,deprecationErrors:true}})
 
-// Create async connection
 let
   /** Cached MongoClient */
-  CMC:null|MongoClient = null,
+  client:MongoClient|null=null,
   /** Cached DB */
-  CDB:null|Db = null
+  db:Db|null=null
 export default async function insu(){
-  if(CMC&&CDB){
-    return {client:CMC, db:CDB}
+  if(client&&db){
+    return{client,db}
   }
   await con.connect()
-  const db = con.db(DB_NAME)
-  CMC = con
-  CDB = db
-  return {client:CMC, db:CDB}
+  const cdb = con.db(DB_NAME)
+  client = con
+  db = cdb
+  return{client,db}
 }
 
 // Export COLLECTIONs

@@ -1,5 +1,5 @@
 
 
 export default function ThisoeChart() {
-  return <main></main>
+  return<main></main>
 }

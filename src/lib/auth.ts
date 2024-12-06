@@ -23,10 +23,10 @@ export const{handlers,auth,signIn,signOut}=NextAuth({
     databaseName:process.env.DB_AUTH,
   }),
   session:{strategy:"jwt"},
-  callbacks:{
-    async signIn({/*user*/}){
+  // callbacks:{
+  //   async signIn({/*user*/}){
       
-      return true
-    },
-  },
+  //     return true
+  //   },
+  // },
 })
