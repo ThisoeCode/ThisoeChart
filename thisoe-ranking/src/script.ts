@@ -1,41 +1,65 @@
-import type { SupportedLang, ZaScript, MidScript, FinalScript, } from "@/lib/ts"
+import type { SupportedLang, SupportedLangAttr, ZaScript, FinalScript, } from "@/lib/ts"
 
-/** Supported Langs */
-export type _SL = 'en'|'ja'|'zhHans'
+// CONFIG: Supported Langs
+export type _sl = 'en'|'ja'|'hans'|'hant'
+export type _sla = 'en'|'ja'|'zh-Hans'|'zh-Hant'
+export const
+  SL:readonly SupportedLang[] = ['en','ja','hans','hant'] as const,
+  SLA:readonly SupportedLangAttr[] = ['en','ja','zh-Hans','zh-Hant'] as const,
+  langAttr:Record<string,string> = {
+    en:'en', ja:'ja', ko:'ko', hans:'zh-Hans', hant:'zh-Hant'
+  }as const,
+  attrFor=(lang:string)=>langAttr[lang]||'en',
+  langFor=(attr:string)=>Object.keys(langAttr).find(key=>langAttr[key]===attr)||'en',
 
-const _={
-  indexPage:{
-    greeting:{
-      en:'hi',
-      zhHans:'你好',
+
+
+///////** IN-PAGE SCRIPTS *///////
+  _ = {
+  indexPage: {
+    greeting: {
+      en: 'hi',
+      hans: '你好',
     },
-    img1:{
-      alt:{
-        en:'Image 1',
+    img1: {
+      alt: {
+        en: 'Image 1',
       },
     },
   },
-  aboutPage:{
-    en:'We are blah blah',
+  aboutPage: {
+    en: 'We are blah blah',
   },
-} as const satisfies Record<string, MidScript>
-export type _ZaScript = typeof _
+}as const
 
-///////
+
+
+export type _script = typeof _
+
+/////// FUNC script() ///////
+
 export default function script(lang:SupportedLang): FinalScript<ZaScript> {
-  function translate(obj: MidScript): MidScript {
-    if (typeof obj === "string") return obj
+  const isLangObject = (obj: unknown): obj is Record<SupportedLang, string> => (
+    typeof obj === "object" &&
+    obj !== null &&
+    SL.some(key => key in obj)
+  )
 
-    if (typeof obj === "object") {
-      if (lang in obj)
-        return (obj as Record<SupportedLang, string>)[lang] || (obj as Record<SupportedLang, string>)['en'] || ""
-      const result: Record<string, MidScript> = {}
-      for (const key in obj){
-        result[key] = translate(obj[key])
+  function translate<T>(obj:T): FinalScript<T> {
+    if (typeof obj === "string")
+      return obj as FinalScript<T>
+    if (typeof obj === "object" && obj !== null) {
+      if (isLangObject(obj)) {
+        const langObj = obj as Record<SupportedLang, string>
+        return (langObj[lang] ?? langObj["en"] ?? "") as FinalScript<T>
       }
-      return result
+      const result: Partial<{ [K in keyof T]:FinalScript<T[K]> }> = {}
+      for (const key in obj) {
+        result[key as keyof T] = translate((obj as T)[key])
+      }
+      return result as FinalScript<T>
     }
-    return ""
+    return "" as FinalScript<T>
   }
 
   return translate(_)

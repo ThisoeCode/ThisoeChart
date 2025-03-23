@@ -1,14 +1,20 @@
 
 
 
+
 // script.ts
-import type{_SL,_ZaScript}from"@/script"
-export type SupportedLang = _SL
-export type ZaScript = _ZaScript
-export type MidScript = { [key: string]: MidScript } | string
-export type FinalScript<T> = T extends Record<SupportedLang, string>
-  ? string
-  : { [K in keyof T]: FinalScript<T[K]> }
+import type{_sl,_sla,_script}from"@/script"
+export type SupportedLang = _sl
+export type SupportedLangAttr = _sla
+export type ZaScript = _script
+
+// export type MidScript = { [key: string]: MidScript } | string
+
+/** Revised: If all keys of an object are language keys, map to string otherwise, map recursively. */
+export type FinalScript<T> =
+  T extends string ? T :
+  T extends object ? (keyof T extends SupportedLang ? string : { [K in keyof T]: FinalScript<T[K]> }) :
+  T
 
 
 
