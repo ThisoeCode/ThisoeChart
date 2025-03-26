@@ -3,13 +3,14 @@
   --thisoe:#178577;
   --thisoe-faint:#DAE8E5;
   --thisoe-faint-bg:#17857730;
-  --background:#fefefe;
-  --foreground:#171717;
 }
 
 /* resets */
+html,body{margin:0;padding:0;height:100vh;height:100dvh;}
+
 i,button,a,p{all:unset}
-i{display:flex}
+i,ol,li{display:flex}
+li{list-style-type:none}
 img{user-select:none;-webkit-user-drag:none}
 
 /* selection and scrollbar */
@@ -26,8 +27,6 @@ img{user-select:none;-webkit-user-drag:none}
   transition:background-color .2s ease;
 }
 ::-webkit-scrollbar-thumb:hover{background-color:#399}
-html,body{margin:0;padding:0;height:100vh;height:100dvh;}
-
 
 
 /* loading */
@@ -43,3 +42,11 @@ html,body{margin:0;padding:0;height:100vh;height:100dvh;}
   font-size:16pt;
   font-weight:bold;
 }
+
+
+
+/*******  *******/
+
+
+li{}
+

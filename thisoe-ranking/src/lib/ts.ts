@@ -2,6 +2,15 @@
 
 
 
+// Alist & Acard
+export interface Card{
+  no:string
+  rank:number
+  place:number
+  title:string
+}
+
+
 // script.ts
 import type{_sl,_sla,_script}from"@/script"
 export type SupportedLang = _sl
@@ -24,7 +33,37 @@ import type{NextRequest}from"next/server"
 export type preThisoe =
 string|number|boolean|undefined|null|
 Date|Error|NextRequest|React.ReactNode|
-Promise<preThisoe>|preThisoe[]|(()=>preThisoe)
+Promise<preThisoe>|preThisoe[]|(()=>preThisoe)|{[_:string]:Thisoe}
 /** Za Everything Type */
 export type Thisoe = preThisoe|{[_:string]:preThisoe}|Readonly<preThisoe>
 export type Aobj = {[_:string]:Thisoe}
+
+// T3 tryCatch
+type Success<T> = {
+  data:T
+  error:null
+}
+type Failure<E> = {
+  data:null
+  error:E
+}
+type Result<T, E = Error> = Success<T> | Failure<E>
+// Main wrapper function
+export async function tryCatch<T, E = Error>(
+  promise:Promise<T>,
+):Promise<Result<T, E>> {
+  try{
+    const data = await promise
+    return { data, error: null }
+  } catch(error) {
+    return { data: null, error: error as E }
+  }
+}
+// E.G.
+  // const{data:someData,error:someError} = await tryCatch(someFunc)
+  // if(someError)retrun{error:"unable to process"}
+  //
+  // const{data:moreData,error:moreError} = await tryCatch(moreFunc)
+  // if(moreError)retrun{error:"unable to process"}
+  //
+  // someData + moreData;
