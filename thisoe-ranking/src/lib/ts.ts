@@ -1,4 +1,8 @@
-
+export type cit = {
+  className?:string
+  id?:string
+  title?:string
+}
 
 
 
@@ -9,6 +13,7 @@ export interface Card{
   place:number
   title:string
 }
+
 
 
 // script.ts
