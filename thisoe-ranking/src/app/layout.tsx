@@ -1,4 +1,5 @@
 import"./thisoe.css"
+import"./svg.css"
 import type{Metadata}from"next"
 import HTML from "@/providers"
 

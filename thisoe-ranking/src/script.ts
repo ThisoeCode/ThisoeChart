@@ -6,11 +6,10 @@ export type _sla = 'en'|'ja'|'zh-Hans'|'zh-Hant'
 export const
   SL:readonly SupportedLang[] = ['en','ja','hans','hant'] as const,
   SLA:readonly SupportedLangAttr[] = ['en','ja','zh-Hans','zh-Hant'] as const,
+
   langAttr:Record<string,string> = {
     en:'en', ja:'ja', ko:'ko', hans:'zh-Hans', hant:'zh-Hant'
   }as const,
-  attrFor=(lang:string)=>langAttr[lang]||'en',
-  langFor=(attr:string)=>Object.keys(langAttr).find(key=>langAttr[key]===attr)||'en',
 
 
 
@@ -20,6 +19,8 @@ export const
     greeting: {
       en: 'hi',
       hans: '你好',
+      ja:'オッスーーー',
+      // ko:'안뇽',
     },
     img1: {
       alt: {
@@ -30,15 +31,18 @@ export const
   aboutPage: {
     en: 'We are blah blah',
   },
-}as const
+}as const,
 
 
+
+attrFor=(lang:string)=>langAttr[lang]||'en',
+langFor=(attr:string)=>Object.keys(langAttr).find(key=>langAttr[key]===attr)||'en'
 
 export type _script = typeof _
 
 /////// FUNC script() ///////
 
-export default function script(lang:SupportedLang): FinalScript<ZaScript> {
+export default function script(lang:SupportedLang='en'): FinalScript<ZaScript> {
   const isLangObject = (obj: unknown): obj is Record<SupportedLang, string> => (
     typeof obj === "object" &&
     obj !== null &&

@@ -1,9 +1,9 @@
+import Oshi from "@/components/oshi"
 import script from "@/script"
-import { redirect } from "next/navigation"
 
 export default function _(){
-  redirect('/oshi')
-  return<main>
+  return<>
     <p>{script('ja').indexPage.greeting}</p>
-  </main>
+    <Oshi/>
+  </>
 }
