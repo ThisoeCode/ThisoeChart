@@ -1,10 +1,10 @@
 'use client'
 
 import script from "@/script"
-import Alist from "../A/Alist"
-import Apage from "../A/Arankpage"
+import Alist from "../A/list"
+import Apage from "../A/rankpage"
 import { useState } from "react"
-import { store } from "@/lib"
+import { store } from "@/lib/client"
 
 export default function Song(){
   const

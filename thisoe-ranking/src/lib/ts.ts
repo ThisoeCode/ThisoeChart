@@ -1,3 +1,8 @@
+/**
+ * @example
+ * className,id,title
+ * className={className}id={id}title={title}
+ */
 export type cit = {
   className?:string
   id?:string
@@ -8,12 +13,39 @@ export type cit = {
 
 // Alist & Acard
 export interface Card{
-  no:string
-  rank:number
-  place:number
-  title:string
+  _no:string
+  _rank:number
+  _place:number
+  _title:string
 }
 
+export type Oshi={
+  ytid:string
+  cat:string
+  name:string
+  avaUrl:string
+  mark:string
+  mama:{
+    name:string
+    pid?:number
+    xid?:string
+    otherlink?:string
+  }
+  /** `null` when Kojin-zei */
+  org:string|null
+  langNames:string[]
+  sotugyou:boolean
+  // optionals
+  xid?:string
+  twitchid?:string
+  orgSub?:string
+  /** `null` when no group */
+  group?:string
+}&Card
+
+export type Song={
+  // TODO Song type
+}&Card
 
 
 // script.ts

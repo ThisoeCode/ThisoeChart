@@ -1,5 +1,5 @@
-"use client"
-
+'use client'
+import'./A.css'
 import type{ Card, cit } from "@/lib/ts"
 import { closestCenter, DndContext, DragEndEvent, KeyboardSensor as keyboard, PointerSensor as pointer, useSensor, useSensors } from "@dnd-kit/core"
 import { SortableContext, arrayMove, sortableKeyboardCoordinates as skc, verticalListSortingStrategy as vertical } from "@dnd-kit/sortable"
@@ -22,7 +22,7 @@ export default function Alist<C extends Card>(
   } & cit>
 ){
 
-///////
+/////// config ///////
   const
     // states
     [place,setPlace] = useState<C[]>(()=>
@@ -47,10 +47,10 @@ export default function Alist<C extends Card>(
       setPlace((prevOrder)=>{
         const
           oldIndex = prevOrder.findIndex(
-            (v)=>v.no === active.id
+            (v)=>v._no === active.id
           ),
           newIndex = prevOrder.findIndex(
-            (v)=>v.no === over.id
+            (v)=>v._no === over.id
           ),
           newOrder = arrayMove(prevOrder, oldIndex, newIndex).map(
             (v,i)=>({
@@ -64,9 +64,7 @@ export default function Alist<C extends Card>(
       })
     }
 
-
-
-///////
+/////// init ///////
   useEffect(() => {
     setPlace(
       ctt.map((v,i)=>({
@@ -76,7 +74,7 @@ export default function Alist<C extends Card>(
     )
   }, [ctt])
 
-///////
+/////// jsx ///////
   return<ol id={id}className={className}title={title}>
     {Anew}
     <DndContext
@@ -84,9 +82,9 @@ export default function Alist<C extends Card>(
       collisionDetection={closestCenter}
       onDragEnd={updatePlace}
     >
-      <SortableContext items={place.map(v=>v.no)} strategy={vertical}>
+      <SortableContext items={place.map(v=>v._no)} strategy={vertical}>
         {place.map(v=>
-          <li key={v.no}>{children(v)}</li>
+          <li key={v._no}>{children(v)}</li>
         )}
       </SortableContext>
     </DndContext>

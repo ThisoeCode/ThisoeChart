@@ -1,6 +1,6 @@
 "use client"
-
-import { store } from "@/lib"
+import'./A.css'
+import { store } from "@/lib/client"
 import { useEffect, useState } from "react"
 
 export default function Apage(

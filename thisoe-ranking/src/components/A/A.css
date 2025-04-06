@@ -1,12 +1,31 @@
+
+/******* Arankpage *******/
+
+
+
 /******* Alist *******/
 ol{
   
 }
 
-
-
-/******* Alist *******/
 li{
   
 }
 
+
+
+/******* Acard *******/
+
+
+
+/******* Anew *******/
+
+
+
+/******* Amod *******/
+dialog{
+  
+}
+dialog::backdrop{
+  background-color:#3333;
+}
