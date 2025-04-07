@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import'./A.css'
 import { store } from "@/lib/client"
 import { useEffect, useState } from "react"

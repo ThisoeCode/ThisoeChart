@@ -1,7 +1,6 @@
 'use client'
 
-import script from "@/script"
-import Alist from "../A/list"
+// import Alist from "../A/list"
 import Apage from "../A/rankpage"
 import { useState } from "react"
 import { store } from "@/lib/client"
@@ -13,5 +12,7 @@ export default function Song(){
 
   return<Apage id={id}toggleThin={toggleThin}>
     {/* <Alist></Alist> */}
+    TODO: song page
+    <br/>thin:{isThin}
   </Apage>
 }

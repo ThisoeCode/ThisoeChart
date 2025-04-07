@@ -3,7 +3,7 @@ import script from "@/script"
 
 export default function _(){
   return<>
-    <p>{script('ja').indexPage.greeting}</p>
+    <p>{script().indexPage.greeting}</p>
     <Oshi/>
   </>
 }

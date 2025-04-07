@@ -2,14 +2,15 @@
 import'./A.css'
 import type{ Card, cit } from "@/lib/ts"
 import { closestCenter, DndContext, DragEndEvent, KeyboardSensor as keyboard, PointerSensor as pointer, useSensor, useSensors } from "@dnd-kit/core"
+import { restrictToVerticalAxis } from '@dnd-kit/modifiers'
 import { SortableContext, arrayMove, sortableKeyboardCoordinates as skc, verticalListSortingStrategy as vertical } from "@dnd-kit/sortable"
-import { useEffect, useState } from "react"
+import { Fragment, useEffect, useState } from "react"
 
 export default function Alist<C extends Card>(
   {Anew,ctt,children,onPlaceChange,className,id,title,}:Readonly<{
     Anew:React.ReactNode
     /** Custom card that renders using `ctt` obj */
-    children:(_:C)=>React.ReactNode
+    children:(v:C,i:number)=>React.ReactNode
     ctt:C[]
     /**
      * @example
@@ -81,10 +82,11 @@ export default function Alist<C extends Card>(
       sensors={sense}
       collisionDetection={closestCenter}
       onDragEnd={updatePlace}
+      modifiers={[restrictToVerticalAxis]}
     >
       <SortableContext items={place.map(v=>v._no)} strategy={vertical}>
-        {place.map(v=>
-          <li key={v._no}>{children(v)}</li>
+        {place.map((v,i)=>
+          <Fragment key={v._no}>{children(v,i)}</Fragment>
         )}
       </SortableContext>
     </DndContext>

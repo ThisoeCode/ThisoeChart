@@ -5,12 +5,19 @@
 
 /******* Alist *******/
 ol{
-  
+  display:flex;
+  flex-direction: column;
+  gap:7pt;
+  padding:9pt 30pt;
 }
 
 li{
-  
+  display:flex;
+  border-radius:9pt;
+  outline:#aaa solid 1px;
+  cursor:grab;
 }
+li:active{cursor:grabbing;}
 
 
 

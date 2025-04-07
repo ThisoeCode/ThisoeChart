@@ -17,7 +17,7 @@ export const
   _ = {
   indexPage: {
     greeting: {
-      en: 'hi',
+      en: 'oh hi',
       hans: '你好',
       ja:'オッスーーー',
       // ko:'안뇽',

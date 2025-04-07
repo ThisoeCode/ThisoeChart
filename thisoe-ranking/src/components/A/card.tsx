@@ -9,10 +9,15 @@ export default function Acard({ctt,children,className,id,title,}:Readonly<{
   ctt:Card
 } & cit>){
   const
-    {attributes:a, listeners:l, setNodeRef:ref, transform, transition} = useSortable({ id: ctt._no }),
+    { attributes:a, listeners:l, setNodeRef:ref,
+      transform,transition,
+      isDragging,
+    } = useSortable({ id: ctt._no }),
     style = {
       transform:CSS.Transform.toString(transform),
       transition,
+      boxShadow: isDragging ? '0 2px 6px #0003' : void'',
+      zIndex: isDragging ? 9 : void'',
     }
   return<li
     id={id}className={className}title={title}

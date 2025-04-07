@@ -22,7 +22,7 @@ export default function AnewOshi(){
 /////// jsx ///////
   return<Anew onSubmit={submit}disableSubBtn={!!name}/*modDialog={<Amod/>}*/>
     <IWB placeholder="Vtuber Name" onClick={searchVtb}onChange={setName}>
-      Search on <i className="holodex svg"/>
+      Search on <i className="holodex svg" title="Holodex"/>
     </IWB>
     <AnewInput placeholder="Category code" onChange={setCat}/>
     <AnewInput placeholder="Oshi mark emoji" onChange={setMark}/>

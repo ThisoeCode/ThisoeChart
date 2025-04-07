@@ -11,7 +11,10 @@ html,body{margin:0;padding:0;height:100vh;height:100dvh;}
 i,button,a,p{all:unset}
 i,ol,li{display:flex}
 li{list-style-type:none}
-img{user-select:none;-webkit-user-drag:none}
+img{
+  user-select:none;-webkit-user-drag:none;
+  border-radius:999pt;
+}
 
 /* selection and scrollbar */
 *::selection{
@@ -45,4 +48,9 @@ img{user-select:none;-webkit-user-drag:none}
 
 
 
-/*  */
+/* TODO DELETE */
+/* TEST STYLING */
+ol{background-color:#ccc;}
+#anew{background-color:green;padding:7pt;}
+li{background-color:aqua;padding:7pt;gap:9pt;align-items:center;}
+#anew{background-color:green;padding:7pt;}

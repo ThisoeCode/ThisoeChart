@@ -25,22 +25,26 @@ export type Oshi={
   name:string
   avaUrl:string
   mark:string
-  mama:{
-    name:string
-    pid?:number
-    xid?:string
-    otherlink?:string
-  }
   /** `null` when Kojin-zei */
   org:string|null
   langNames:string[]
-  sotugyou:boolean
+  sotugyou:boolean|string
   // optionals
   xid?:string
   twitchid?:string
   orgSub?:string
-  /** `null` when no group */
   group?:string
+  mama?:{
+    name:string
+    pid?:number
+    xid?:string
+    website?:string
+  }
+  ouenColor?:string|{
+    normal?:string
+    light?:string
+    dark?:string
+  }
 }&Card
 
 export type Song={
