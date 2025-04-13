@@ -1,6 +1,21 @@
 
 /******* Arankpage *******/
-
+main{
+  &>header{
+    position:fixed; top:0;left:0;
+    height:72pt;
+    display:flex;flex-direction:row;
+    width:100vw;
+    &>h1{
+      font-size:27pt;
+      font-weight:500;
+    }
+  }
+  &>i{
+    margin:72pt auto;
+    width:min(720pt,90vw);
+  }
+}
 
 
 /******* Alist *******/

@@ -3,7 +3,12 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
-    domains: ['yt3.ggpht.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'yt3.ggpht.com',
+      },
+    ],
   },
 };
 

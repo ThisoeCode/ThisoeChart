@@ -5,8 +5,25 @@
   --thisoe-faint-bg:#17857730;
 }
 
+/* fonts*/
+html[lang="en"] *{font-family:var(--serif)}
+html[lang="ja"] *{font-family:var(--serif-ja)}
+html[lang="ko"] *{font-family:var(--serif-ko)}
+html[lang="zh-Hans"] *{font-family:var(--serif-hans)}
+html[lang="zh-Hant"] *{font-family:var(--serif-hant)}
+
 /* resets */
-html,body{margin:0;padding:0;height:100vh;height:100dvh;}
+*{
+  margin:0;padding:0;
+  font-size:12pt;line-height:1;
+  font-weight:normal;text-decoration:none;
+  font-family:var(--serif),var(--serif-ja),var(--serif-ko),var(--serif-hans),var(--serif-hant),serif;
+}
+
+html,body{
+  height:100vh;height:100dvh;
+  overscroll-behavior:contain;
+}
 
 i,button,a,p{all:unset}
 i,ol,li{display:flex}
@@ -50,7 +67,8 @@ img{
 
 /* TODO DELETE */
 /* TEST STYLING */
-ol{background-color:#ccc;}
+/* ol{background-color:#ccc;}
 #anew{background-color:green;padding:7pt;}
 li{background-color:aqua;padding:7pt;gap:9pt;align-items:center;}
-#anew{background-color:green;padding:7pt;}
+#anew{background-color:green;padding:7pt;} */
+header{background:#178577;}

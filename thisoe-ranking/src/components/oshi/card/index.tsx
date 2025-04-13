@@ -10,9 +10,9 @@ export default function Detail({v,i,className,id,title}:Readonly<{
     rank = `#${i+1}`
 
   return<Acard ctt={v}className={className}id={id}title={title}>
-    <h1>{i===0?'👑':rank}</h1>
+    <h2>{i===0?'👑':rank}</h2>
     <Image width={50}height={50}src={v.avaUrl}alt={v.name+' avatar'}/>
-    <h2>{v._title} {v.mark}</h2>
+    <h3>{v._title} {v.mark}</h3>
     {v.mama && <p>Designer: {v.mama.name}</p>}
   </Acard>
 }

@@ -3,7 +3,7 @@ import'./A.css'
 import { store } from "@/lib/client"
 import { useEffect, useState } from "react"
 
-export default function Apage(
+export default function Arankpage(
   {children,toggleThin,id,className}:Readonly<{
     /** Put `<Alist>` in. */
     children:React.ReactNode
@@ -15,7 +15,7 @@ export default function Apage(
   useEffect(()=>{
     store(id+'_thin').ifNullSet('n')
     store('theme').ifNullSet('dark')
-  },[])
+  },[id])
 
   const
     dark='dark', light='oh no', thin='y', thic='n',
@@ -33,7 +33,7 @@ export default function Apage(
 
   return<main id={id}className={className}>
     <header>
-      <h1>header</h1>
+      <h1>Oshi Ranking</h1>
       <i id="btn-wrap">
         <button id="theme-btn"onClick={handDark}>
           <i className={
@@ -45,6 +45,6 @@ export default function Apage(
         </button>
       </i>
     </header>
-    <div>{children}</div>
+    <i>{children}</i>
   </main>
 }

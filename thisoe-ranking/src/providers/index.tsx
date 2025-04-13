@@ -1,12 +1,11 @@
 'use client'
-import { useLangAttr } from "@/hooks/useLang"
+import { LangProvider } from "@/context/LangContext"
+import { ReactNode } from "react"
 
-export default function HTML({children,}:
-  Readonly<{
-    children:React.ReactNode,
-  }>
-){
-  return<html lang={useLangAttr()}>
-    <body>{children}</body>
-  </html>
+export default function Providers({ children }: Readonly<{ children: ReactNode }>) {
+  return (
+    <LangProvider>
+      {children}
+    </LangProvider>
+  )
 }

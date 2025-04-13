@@ -3,7 +3,7 @@ import script from "@/script"
 
 export default function _(){
   return<>
-    <p>{script().indexPage.greeting}</p>
+    <p style={{display:'none'}}>{script().indexPage.greetingTest}</p>
     <Oshi/>
   </>
 }

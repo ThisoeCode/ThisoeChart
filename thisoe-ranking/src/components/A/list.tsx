@@ -1,9 +1,9 @@
 'use client'
 import'./A.css'
 import type{ Card, cit } from "@/lib/ts"
-import { closestCenter, DndContext, DragEndEvent, KeyboardSensor as keyboard, PointerSensor as pointer, useSensor, useSensors } from "@dnd-kit/core"
+import { closestCenter, DndContext, DragEndEvent, TouchSensor as mobile, PointerSensor as mouse, useSensor, useSensors } from "@dnd-kit/core"
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers'
-import { SortableContext, arrayMove, sortableKeyboardCoordinates as skc, verticalListSortingStrategy as vertical } from "@dnd-kit/sortable"
+import { SortableContext, arrayMove, verticalListSortingStrategy as vertical } from "@dnd-kit/sortable"
 import { Fragment, useEffect, useState } from "react"
 
 export default function Alist<C extends Card>(
@@ -35,9 +35,12 @@ export default function Alist<C extends Card>(
 
     // dnd ctxt
     sense = useSensors(
-      useSensor(pointer),
-      useSensor(keyboard, {
-        coordinateGetter: skc,
+      useSensor(mouse),
+      useSensor(mobile,{
+        activationConstraint: {
+          delay: 99,
+          tolerance: 5,
+        },
       }),
     ),
 

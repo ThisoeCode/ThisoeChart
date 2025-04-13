@@ -1,49 +1,67 @@
-import type { SupportedLang, SupportedLangAttr, ZaScript, FinalScript, } from "@/lib/ts"
+import type { SupportedThisoeLang, SupportedLangAttr, ZaScript, FinalScript, } from "@/lib/ts"
+import { store } from "./lib/client"
 
 // CONFIG: Supported Langs
-export type _sl = 'en'|'ja'|'hans'|'hant'
-export type _sla = 'en'|'ja'|'zh-Hans'|'zh-Hant'
+export type _thisoelang = 'en'|'ja'|'hans'|'hant'|'ko'|'ina'
+export type _sla = 'en'|'ja'|'zh-Hans'|'zh-Hant'|'ko'
 export const
-  SL:readonly SupportedLang[] = ['en','ja','hans','hant'] as const,
-  SLA:readonly SupportedLangAttr[] = ['en','ja','zh-Hans','zh-Hant'] as const,
+  /** Supported Langs (in Thisoe lang code) */
+  SL:readonly SupportedThisoeLang[] = [
+    'en','ja','ko',
+    'hans','hant',
+    'ina',
+  ] as const,
+  /** Supported Langs (in html lang attr) */
+  SLA:readonly SupportedLangAttr[] = [
+    'en','ja','ko',
+    'zh-Hans','zh-Hant',
+  ] as const,
 
-  langAttr:Record<string,string> = {
-    en:'en', ja:'ja', ko:'ko', hans:'zh-Hans', hant:'zh-Hant'
+  /** `ThisoeLang: [HtmlLangAttr, Description, htmlClassName]` */
+  langAttr:{[Key in SupportedThisoeLang]:[SupportedLangAttr,string,string?]} = {
+    en:['en','English',void''],
+    ja:['ja','日本語',void''],
+    ko:['ko','한국어',void''],
+    hans:['zh-Hans','简体中文',void''],
+    hant:['zh-Hant','繁體中文',void''],
+    // Fictional langs
+    ina:['en','Ina Script','ina'],
   }as const,
-
 
 
 ///////** IN-PAGE SCRIPTS *///////
   _ = {
   indexPage: {
-    greeting: {
-      en: 'oh hi',
-      hans: '你好',
-      ja:'オッスーーー',
-      // ko:'안뇽',
-    },
-    img1: {
-      alt: {
-        en: 'Image 1',
-      },
+    greetingTest: {
+      en:'[en] oh hi',
+      hans:'[hans] 来辣',
+      hant:'[hant] 歡迎',
+      ja:'[ja] オッスーーー',
+      ko:'[ko] 안뇽',
+      ina:'Salvete fair visitor',
     },
   },
-  aboutPage: {
-    en: 'We are blah blah',
+  oshi: {
+    about:{
+      en: 'We are blah blah',
+    },
   },
 }as const,
 
 
-
-attrFor=(lang:string)=>langAttr[lang]||'en',
-langFor=(attr:string)=>Object.keys(langAttr).find(key=>langAttr[key]===attr)||'en'
+/** Convert ThisoeLangCode to html lang attr */
+attrFor=(lang:SupportedThisoeLang)=>(langAttr[lang]?.[0] || store('lang').get || 'en') as SupportedLangAttr,
+/** Convert html lang attr to ThisoeLangCode */
+langFor=(attr:SupportedLangAttr)=>(Object.keys(langAttr) as SupportedThisoeLang[]).find(key=>langAttr[key][0]===attr)||store('lang').get||'en'
 
 export type _script = typeof _
 
+
+
 /////// FUNC script() ///////
 
-export default function script(lang:SupportedLang='en'): FinalScript<ZaScript> {
-  const isLangObject = (obj: unknown): obj is Record<SupportedLang, string> => (
+export default function script(lang:SupportedThisoeLang='en'): FinalScript<ZaScript> {
+  const isLangObject = (obj: unknown): obj is Record<SupportedThisoeLang, string> => (
     typeof obj === "object" &&
     obj !== null &&
     SL.some(key => key in obj)
@@ -54,7 +72,7 @@ export default function script(lang:SupportedLang='en'): FinalScript<ZaScript> {
       return obj as FinalScript<T>
     if (typeof obj === "object" && obj !== null) {
       if (isLangObject(obj)) {
-        const langObj = obj as Record<SupportedLang, string>
+        const langObj = obj as Record<SupportedThisoeLang, string>
         return (langObj[lang] ?? langObj["en"] ?? "") as FinalScript<T>
       }
       const result: Partial<{ [K in keyof T]:FinalScript<T[K]> }> = {}
