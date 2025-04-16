@@ -31,6 +31,72 @@ export const
   aboutPage: {
     en: 'We are blah blah',
   },
+  rankpage:{
+    header:{
+      btns:{
+        theme:{
+          switch1:{
+            en: 'Switch to ',
+            ja: '',
+            ko: '',
+            hans: '',
+            hant: '切換到',
+          },
+          dark: {
+            en: 'dark',
+            ja: 'ダーク',
+            ko: '',
+            hans: '暗色',
+            hant: '暗色',
+          },
+          light: {
+            en: 'light',
+            ja: 'ライト',
+            ko: '',
+            hans: '亮色',
+            hant: '亮色',
+          },
+          switch2: {
+            en: ' theme',
+            ja: 'テーマに',
+            ko: '',
+            hans: '背景',
+            hant: '主題',
+          },
+        },
+        list:{
+          switch1:{
+            en: 'Switch to ',
+            ja: '',
+            ko: '',
+            hans: '',
+            hant: '切換到',
+          },
+          compact:{
+            en: 'compact',
+            ja: 'コンパクト',
+            ko: '',
+            hans: '收起',
+            hant: '緊湊',
+          },
+          detail:{
+            en: 'detailed',
+            ja: '詳細',
+            ko: '',
+            hans: '展开',
+            hant: '詳細',
+          },
+          switch2: {
+            en: ' list',
+            ja: 'になる',
+            ko: '',
+            hans: '列表',
+            hant: '列表',
+          },
+        },
+      },
+    },
+  },
 }as const,
 
 

@@ -16,7 +16,7 @@ export default function Acard({ctt,children,className,id,title,}:Readonly<{
     style = {
       transform:CSS.Transform.toString(transform),
       transition,
-      boxShadow: isDragging ? '0 2px 6px #0003' : void'',
+      boxShadow: isDragging ? '0 2pt 3pt #3333' : void'',
       zIndex: isDragging ? 9 : void'',
     }
   return<li

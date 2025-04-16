@@ -75,8 +75,11 @@ export default function Oshi(){
       },
     ]as Oshi[]
 
-  return<Apage id="oshi"toggleThin={toggleThin}>
-    <Alist Anew={<Anew/>}ctt={TEST_DATA}>
+  return<Apage id="oshi"
+    h1="Oshi Ranking"
+    toggleThin={toggleThin}Anew={<Anew/>}
+  >
+    <Alist ctt={TEST_DATA}>
       {(v,i)=>isThin?<Thin v={v}i={i}/>:<Detail v={v}i={i}/>}
     </Alist>
   </Apage>

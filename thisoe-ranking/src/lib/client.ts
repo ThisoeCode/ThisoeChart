@@ -2,7 +2,7 @@ export const
 
 
 /** `localStorage` */
-store = <T=string>(key:string):Store<T> => new Store<T>(key),
+store = <T=string>(key:string):Store<T> => window && new Store<T>(key),
 
 
 

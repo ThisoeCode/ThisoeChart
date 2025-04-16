@@ -1,14 +1,49 @@
 
 /******* Arankpage *******/
+main{
+  &>header{
+    position:fixed; top:0;left:0;
+    height:57pt;
+    display:flex;flex-direction:row;
+    align-items:center;
+    width:100vw;
+    &>*{margin:auto}
+    &>h1{
+      margin-left:30pt;
+      font-size:27pt;
+      font-weight:500;
+    }
+    &>#btn-wrap{
+      flex-direction:row;
+      gap:7pt;
+      margin-right:30pt;
+      &>button{
+        width:30pt;height:30pt;
+        cursor:pointer;
+        transition:scale .12s ease;
+      }&>button:hover{scale:1.1}
+      &>button:active{scale:.93}
+    }
+  }
+  &>i{
+    flex-direction:column;
+    margin:57pt auto 30pt;
+    width:min(720pt,90vw);
+  }
+}
 
 
 
 /******* Alist *******/
+main>i{
+
+}
 ol{
   display:flex;
   flex-direction: column;
-  gap:7pt;
-  padding:9pt 30pt;
+  gap:12pt;
+  margin:9pt 0;
+  padding:0 30pt;
 }
 
 li{

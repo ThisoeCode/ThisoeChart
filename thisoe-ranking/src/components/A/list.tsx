@@ -2,13 +2,12 @@
 import'./A.css'
 import type{ Card, cit } from "@/lib/ts"
 import { closestCenter, DndContext, DragEndEvent, KeyboardSensor as keyboard, PointerSensor as pointer, useSensor, useSensors } from "@dnd-kit/core"
-import { restrictToVerticalAxis } from '@dnd-kit/modifiers'
+import { restrictToParentElement, restrictToVerticalAxis } from '@dnd-kit/modifiers'
 import { SortableContext, arrayMove, sortableKeyboardCoordinates as skc, verticalListSortingStrategy as vertical } from "@dnd-kit/sortable"
-import { Fragment, useEffect, useState } from "react"
+import { Fragment, useEffect, useState, useRef } from "react"
 
 export default function Alist<C extends Card>(
-  {Anew,ctt,children,onPlaceChange,className,id,title,}:Readonly<{
-    Anew:React.ReactNode
+  {ctt,children,onPlaceChange,className,id,title,}:Readonly<{
     /** Custom card that renders using `ctt` obj */
     children:(v:C,i:number)=>React.ReactNode
     ctt:C[]
@@ -25,6 +24,7 @@ export default function Alist<C extends Card>(
 
 /////// config ///////
   const
+    containerRef = useRef<HTMLOListElement>(null),
     // states
     [place,setPlace] = useState<C[]>(()=>
       ctt.map((v,i)=>({
@@ -44,7 +44,7 @@ export default function Alist<C extends Card>(
     updatePlace = (e:DragEndEvent)=>{
       const { active, over } = e
       if(!over||active.id === over.id)return
-  
+
       setPlace((prevOrder)=>{
         const
           oldIndex = prevOrder.findIndex(
@@ -76,16 +76,15 @@ export default function Alist<C extends Card>(
   }, [ctt])
 
 /////// jsx ///////
-  return<ol id={id}className={className}title={title}>
-    {Anew}
+  return<ol ref={containerRef} id={id}className={className}title={title}>
     <DndContext
       sensors={sense}
       collisionDetection={closestCenter}
       onDragEnd={updatePlace}
-      modifiers={[restrictToVerticalAxis]}
+      modifiers={[restrictToVerticalAxis, restrictToParentElement]}
     >
       <SortableContext items={place.map(v=>v._no)} strategy={vertical}>
-        {place.map((v,i)=>
+        {place.map((v,i)=> // <li/> goes here
           <Fragment key={v._no}>{children(v,i)}</Fragment>
         )}
       </SortableContext>
