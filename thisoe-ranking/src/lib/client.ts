@@ -2,7 +2,14 @@ export const
 
 
 /** `localStorage` */
-store = <T=string>(key:string):Store<T> => window && new Store<T>(key),
+store = <T=string>(key:string):Store<T> => {
+  // Check if window is defined (client-side)
+  if (typeof window !== 'undefined') {
+    return new Store<T>(key)
+  }
+  // Return a dummy store for server-side rendering
+  return new Store<T>(key, true)
+},
 
 
 
@@ -17,9 +24,9 @@ class Store<T=string> {
   public get:T|null
   private isBrowser: boolean
 
-  constructor(key:string){
+  constructor(key:string, isServer = false){
     this.key = key
-    this.isBrowser = typeof window !== 'undefined'
+    this.isBrowser = typeof window !== 'undefined' && !isServer
     this.get = this.getter()
   }
 

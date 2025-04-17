@@ -20,7 +20,7 @@ export default function Apage(
     store(id+'_thin').ifNullSet('n')
     document.body.classList.toggle('dark', store('theme').get !== 'light')
     toggleThin(store(id+'_thin').get === 'y')
-  },[])
+  },[id,toggleThin])
 
   const
     dark='dark', light='light', thin='y', thic='n',
