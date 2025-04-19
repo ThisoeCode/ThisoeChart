@@ -1,10 +1,13 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
-  /* config options here */
   images: {
-    domains: ['yt3.ggpht.com'],
+    remotePatterns: [
+      new URL('https://yt3.ggpht.com/**'),
+      new URL('https://pbs.twimg.com/**'),
+    ],
   },
-};
+  // allowedDevOrigins: ['192.168.0.27', 'local-origin.dev', '*.local-origin.dev'],
+}
 
-export default nextConfig;
+export default nextConfig

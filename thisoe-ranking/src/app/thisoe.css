@@ -12,6 +12,7 @@
   font-size:12pt;line-height:1;
   font-weight:normal;text-decoration:none;
   font-family:var(--serif),var(--serif-ja),var(--serif-ko),var(--serif-hans),var(--serif-hant),serif;
+  touch-action:none; /* dndkit requirement */
 }
 
 html,body{
