@@ -1,43 +1,44 @@
 export const
+isClient = typeof window !== 'undefined',
+isServer = !isClient,
 
 
-/** `localStorage` */
+
+/** `Store` wrapper (for `localStorage`) */
 store = <T=string>(key:string):Store<T> => {
-  // Check if window is defined (client-side)
-  if (typeof window !== 'undefined') {
-    return new Store<T>(key)
-  }
-  // Return a dummy store for server-side rendering
+  // Check if is client component
+  if(isClient) return new Store<T>(key)
   return new Store<T>(key, true)
-},
+}
 
-
-
-/**  */
-_ = 0
-
-
-
+// REFINED by Claude 3.7
 /** Thisoe `localStorage` manager */
 class Store<T=string> {
   private key:string
-  public get:T|null
+  /**
+   * - `undefined` if does not exist
+   * - `null` if is server component
+   */
+  public get:T|undefined|null
   private isBrowser: boolean
 
   constructor(key:string, isServer = false){
-    this.key = key
     this.isBrowser = typeof window !== 'undefined' && !isServer
+    if(!this.isBrowser){
+      this.key = ''
+      this.get = null
+      return
+    }
+
+    this.key = key
     this.get = this.getter()
   }
 
-  private getter():T|null {
-    if (!this.isBrowser) {
-      return null
-    }
-    
+  private getter():T|undefined|null {
+    if(!this.isBrowser) return null
     const item = localStorage.getItem(this.key)
     if (item === null) { // NOT EXIST
-      return null
+      return void''
     }
     try{
       return JSON.parse(item) as T

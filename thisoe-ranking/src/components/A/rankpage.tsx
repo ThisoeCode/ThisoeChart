@@ -1,10 +1,11 @@
 'use client'
 import'./A.css'
 import { store } from "@/lib/client"
-import script from '@/script'
+import { initTheme } from '@/lib/config'
+import script from '@/lib/script'
 import { useEffect, useState } from "react"
 
-export default function Apage(
+export default function Arankpage(
     {Anew,h1,children,toggleThin,id,className}:Readonly<{
     Anew:React.ReactNode
     h1:string
@@ -16,7 +17,7 @@ export default function Apage(
   }>
 ){
   useEffect(()=>{
-    store('theme').ifNullSet('dark')
+    store('theme').ifNullSet(initTheme)
     store(id+'_thin').ifNullSet('n')
     document.body.classList.toggle('dark', store('theme').get !== 'light')
     toggleThin(store(id+'_thin').get === 'y')

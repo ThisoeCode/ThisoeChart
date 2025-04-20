@@ -1,13 +1,17 @@
-import"./thisoe.css"
-import"./svg.css"
-import type{Metadata}from"next"
+import "./thisoe.css"
+import "./svg.css"
+import type { Metadata } from "next"
 import HTML from "@/providers"
+import { selfurl } from "@/lib"
 
-export const metadata:Metadata = {
+export const metadata: Metadata = {
   title: "Thisoe Rankings",
-  description: "", /** @TODO description */
+  description: "", /** @TODO descriptions on all pages */
+  alternates: {
+    canonical: `${selfurl}/`,
+  },
 }
 
-export default function _({children}:Readonly<{children:React.ReactNode}>){
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return<HTML>{children}</HTML>
 }

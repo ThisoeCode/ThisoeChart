@@ -1,4 +1,11 @@
 .env.local
 .vscode/
+.vercel/
+
+
+# Thisoe ignores
 test/
 *.txt
+
+# PAUSE UPDATES
+\[lang\]/

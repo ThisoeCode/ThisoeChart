@@ -1,0 +1,21 @@
+*{background-color:pink}
+
+i{
+  flex-direction: column;
+}
+
+h1{
+  font-size:39pt;
+}
+
+h2{
+  font-size:18pt;
+}
+
+button{
+  background-color:pink;
+  border:none;
+  border-radius:4pt;
+  padding:4pt;
+}
+

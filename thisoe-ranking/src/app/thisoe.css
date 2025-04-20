@@ -5,6 +5,13 @@
   --thisoe-faint-bg:#17857730;
 }
 
+/* fonts*/
+html[lang="en"] *{font-family:var(--serif)}
+html[lang="ja"] *{font-family:var(--serif-ja)}
+html[lang="ko"] *{font-family:var(--serif-ko)}
+html[lang="zh-Hans"] *{font-family:var(--serif-hans)}
+html[lang="zh-Hant"] *{font-family:var(--serif-hant)}
+
 /* resets */
 *{
   margin:0;padding:0;
@@ -16,8 +23,7 @@
 }
 
 html,body{
-  width:100vw;
-  height:100vh;height:100dvh;
+  all:unset;
   overscroll-behavior:contain;
   transition:background-color .2s ease;
 }

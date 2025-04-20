@@ -1,5 +1,7 @@
 export const
 
+// get public env
+selfurl=process.env.NEXT_PUBLIC_SELF_URL,
 
 
 /** Get yt id from url */
