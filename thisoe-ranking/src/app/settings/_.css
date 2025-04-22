@@ -1,7 +1,5 @@
-*{background-color:pink}
-
-i{
-  flex-direction: column;
+#lang-menu{
+  gap:9pt;
 }
 
 h1{
@@ -13,9 +11,12 @@ h2{
 }
 
 button{
-  background-color:pink;
+  background-color:var(--thisoe);
   border:none;
   border-radius:4pt;
   padding:4pt;
+}button:hover{
+  filter:brightness(1.2);
+  outline:aquamarine solid 1px;
 }
 

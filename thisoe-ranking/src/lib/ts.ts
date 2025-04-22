@@ -20,6 +20,7 @@ export interface Card{
 }
 
 export type Oshi={
+  /** **PRIMARY KEY** */
   ytid:`UC${string}`
   ythandle?:`@${string}`
   cat:string
@@ -57,7 +58,40 @@ export type Oshi={
 }&Card
 
 export type Song={
-  // TODO Song type
+  /** **PRIMARY KEY** */
+  ytid:string
+  name:string
+  /** is original */
+  isOri:boolean
+
+  // optionals
+  artists?:{
+    ori:{
+      composer?:string
+      arranger?:string
+      vocal?:string
+      /** MV illustrators or modelers */
+      ESTC?:string
+    }
+    cover?:{
+      mixArranger?:string
+      vocal?:string
+      /** MV illustrators or modelers */
+      ESTC?:string
+    }
+  }
+  holodex?:{
+    // /** @todo Contact holodex staff for the `songs` obj */
+    // songs?:{
+    //   ids:string[]
+    //   art?:string
+    // }
+    channel?:{
+      id:string
+      english_name?:string
+      photo?:string
+    }
+  }
 }&Card
 
 

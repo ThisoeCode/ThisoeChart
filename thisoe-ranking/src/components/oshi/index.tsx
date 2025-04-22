@@ -9,6 +9,7 @@ import type{ Oshi } from "@/lib/ts"
 import Thin from "./card/thin"
 import Detail from "./card"
 import { TEST_DATA } from "@/tmp"
+import './_.css'
 
 export default function Oshi(){
   const

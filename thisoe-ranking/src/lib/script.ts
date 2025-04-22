@@ -24,10 +24,10 @@ export const
     en:['en','English','en'],
     ja:['ja','日本語','ja'],
     ko:['ko','한국어','ko'],
-    hans:['zh-Hans','简体中文','hans'],
-    hant:['zh-Hant','繁體中文','hant'],
-    // Fictional langs
-    ina:['en','Ina Script','ina'],
+    hans:['zh-Hans','中文 (简体)','hans'],
+    hant:['zh-Hant','中文 (繁體)','hant'],
+    // dialects and fictional langs
+    ina:['en','Ina Script (Wah)','ina'],
   }as const,
 
 /** Convert ThisoeLangCode to html lang attr */

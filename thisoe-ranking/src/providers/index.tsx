@@ -2,7 +2,7 @@
 import { store } from "@/lib/client"
 import { initTheme, initLang } from "@/lib/config"
 import { langAttr, mapBrowserLangToThisoeLang } from "@/lib/script"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import type{ LangKey } from "@/lib/ts"
 
 /** 
@@ -11,7 +11,7 @@ import type{ LangKey } from "@/lib/ts"
  */
 export default function HTML({children,}:Readonly<{children:React.ReactNode,}>){
   const
-    theme = store('theme').get ?? initTheme,
+    [theme,setTheme] = useState(store('theme').get ?? initTheme),
     bodyClassName = theme === 'dark' ? 'dark' : undefined,
     langKey: LangKey = store('lang').get as LangKey ?? initLang
 
@@ -23,6 +23,13 @@ export default function HTML({children,}:Readonly<{children:React.ReactNode,}>){
       store('lang').set(initLang)
     }
   }, [])
+
+  // Set theme when first load
+  useEffect(()=>{
+    store('theme').ifNullSet(initTheme)
+    setTheme(store('theme').get ?? initTheme)
+    document.body.classList.toggle('dark', store('theme').get === 'dark')
+  },[])
 
   return<html lang={langAttr[langKey][0]}>
     <body className={bodyClassName}>

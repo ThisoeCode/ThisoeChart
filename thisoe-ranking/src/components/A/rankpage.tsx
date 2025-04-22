@@ -1,9 +1,10 @@
 'use client'
 import'./A.css'
 import { store } from "@/lib/client"
-import { initTheme } from '@/lib/config'
 import script from '@/lib/script'
 import { useEffect, useState } from "react"
+import Header from '../HEADER'
+import ArankpageSkeleton from '@/skeletons/rankpage'
 
 export default function Arankpage(
     {Anew,h1,children,toggleThin,id,className}:Readonly<{
@@ -16,23 +17,10 @@ export default function Arankpage(
     className?:string
   }>
 ){
-  useEffect(()=>{
-    store('theme').ifNullSet(initTheme)
-    store(id+'_thin').ifNullSet('n')
-    document.body.classList.toggle('dark', store('theme').get !== 'light')
-    toggleThin(store(id+'_thin').get === 'y')
-  },[id,toggleThin])
-
   const
-    dark='dark', light='light', thin='y', thic='n',
-    [isDark,setDark]=useState(store('theme').get===light?false:true),
+    thin='y', thic='n',
     [isThin,setThin]=useState(store(id+'_thin').get===thin?true:false),
-    handDark=()=>{
-      const newDark = !isDark
-      setDark(newDark)
-      store('theme').set(newDark?dark:light)
-      document.body.classList.toggle('dark',newDark)
-    },
+    [mounted,setMounted]=useState(false),
     handThic=()=>{
       const newThin = !isThin
       setThin(newThin)
@@ -40,22 +28,21 @@ export default function Arankpage(
       toggleThin(newThin)
     }
 
+  useEffect(()=>{
+    store(id+'_thin').ifNullSet('n')
+    toggleThin(store(id+'_thin').get === 'y')
+    setMounted(true)
+  },[id,toggleThin])
+
+  if(!mounted)return <ArankpageSkeleton header={<Header h1={h1}/>}/>
   return<main id={id}className={className}>
-    <header>
-      <h1>{h1}</h1>
-      <i id="btn-wrap">
-        <button id="theme-btn"onClick={handDark}title={
-          `${script().rankpage.header.btns.theme.switch1}${isDark?script().rankpage.header.btns.theme.light:script().rankpage.header.btns.theme.dark}${script().rankpage.header.btns.theme.switch2}`
-        }>
-          <i className={`svg ${isDark?'sun':'moon'}`}/>
-        </button>
-        <button id="thin-btn"onClick={handThic}title={
-          `${script().rankpage.header.btns.list.switch1}${isThin?script().rankpage.header.btns.list.compact:script().rankpage.header.btns.list.detail}${script().rankpage.header.btns.list.switch2}`
-        }>
-          <i className={`svg ${isThin?'list-thic':'list-thin'}`}/>
-        </button>
-      </i>
-    </header>
+    <Header h1={h1}>
+      <button id="thin-btn"onClick={handThic}title={
+        `${script().rankpage.header.btns.list.switch1}${isThin?script().rankpage.header.btns.list.compact:script().rankpage.header.btns.list.detail}${script().rankpage.header.btns.list.switch2}`
+      }>
+        <i className={`svg ${isThin?'list-thic':'list-thin'}`}/>
+      </button>
+    </Header>
     <i>
       {Anew}
       {children}

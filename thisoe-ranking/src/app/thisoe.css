@@ -29,7 +29,7 @@ html,body{
 }
 
 i,button,a,p{all:unset}
-i,ol,li{display:flex}
+i,ol,li{display:flex;flex-direction:column}
 li{list-style-type:none}
 img{
   user-select:none;-webkit-user-drag:none;
@@ -51,19 +51,58 @@ img{
 }
 ::-webkit-scrollbar-thumb:hover{background-color:#399}
 
+hr{
+  all:unset;
+  height:1px;
+  background-color:#fff;
+}
+
+
 
 /* loading */
 #loading{
-  width:100vw;height:99vh;
-  width:100dvw;height:99dvh;
-  display:flex;
-  background:#fff;
+  width:100vw;height:100vh;
+  width:100dvw;height:100dvh;
+  gap:9pt;
+  align-items:center;
+  justify-content:center;
+  background: #178577;
   position:absolute;
   left:0;top:0;
-}#loading p{
-  margin:auto;
-  font-size:16pt;
+}
+#loading>*{transform:translateY(-9vh)}
+#loading>h1{
+  font-size:72px;
   font-weight:bold;
+}#loading>h2{font-size:30px}
+#loading>p{font-size:18px;text-align:center}
+
+
+
+/* header */
+header{
+  position:fixed; top:0;left:0;
+  height:57pt;
+  display:flex;flex-direction:row;
+  align-items:center;
+  width:100vw;
+  &>*{margin:auto}
+  &>h1{
+    margin-left:30pt;
+    font-size:27pt;
+    font-weight:500;
+  }
+  &>#btn-wrap{
+    flex-direction:row;
+    gap:7pt;
+    margin-right:30pt;
+    &>button{
+      width:30pt;height:30pt;
+      cursor:pointer;
+      transition:scale .12s ease;
+    }&>button:hover{scale:1.1}
+    &>button:active{scale:.93}
+  }
 }
 
 
