@@ -1,5 +1,5 @@
 'use client'
-// import script from "@/lib/script"
+import script from "@/lib/script"
 import Alist from "../A/list"
 import Arankpage from "../A/rankpage"
 import { useState } from "react"
@@ -18,7 +18,7 @@ export default function Oshi(){
     testData=TEST_DATA as Oshi[]
 
   return<Arankpage id="oshi"
-    h1="Oshi Ranking"
+    h1={script().oshi.h1}
     toggleThin={toggleThin}Anew={<Anew/>}
   >
     <Alist ctt={testData}>

@@ -1,11 +1,10 @@
 'use client'
-
-import { SL, langAttr } from '@/lib/script'
+import { SL, langAttr, attrFor } from '@/lib/script'
 import { useCallback } from 'react'
 import { store } from '@/lib/client'
 import { initLang } from '@/lib/config'
 import localfont from 'next/font/local'
-import type{ SupportedThisoeLang as STL } from '@/lib/ts'
+import type{ cit, SupportedThisoeLang as STL } from '@/lib/ts'
 import type{ NextFont } from 'next/dist/compiled/@next/font'
 
 const visitorScript = localfont({
@@ -18,37 +17,41 @@ const visitorScript = localfont({
   display:'swap',
 })
 
-export default function LangMenu(){
+export default function LangMenu({id,className,title,listOnly}:Readonly<{
+  listOnly?:boolean
+}&cit>){
   const
     currentLang = store('lang').get ?? initLang,
     setLang = (newLang: STL) => store('lang').set(newLang),
 
     switchLang = useCallback((newLang: STL) => {
       setLang(newLang)
+      document.documentElement.lang = attrFor(newLang)
     },[]),
   
     // Special fonts
     specialFonts:Array<[STL,NextFont]> = [
       ['ina', visitorScript],
-    ]
+    ],
 
-  return (
-    <i id="lang-menu">
-      {SL.map(lang=>(
-        <button
-          key={lang}
-          onClick={()=>switchLang(lang)}
-          className={
-            currentLang === lang ? 'current-lang' : ''
-          }
-          style={
-            specialFonts.find(([special])=>special===lang)?.[1].style
-          }
-          aria-label={`Switch to ${langAttr[lang][1]}`}
-        >
-          {langAttr[lang][1]}
-        </button>
-      ))}
-    </i>
-  )
+    list = SL.map(lang=>(
+      <button
+        key={lang}
+        onClick={()=>switchLang(lang)}
+        className={
+          currentLang === lang ? 'current-lang' : ''
+        }
+        style={
+          specialFonts.find(([special])=>special===lang)?.[1].style
+        }
+        aria-label={`Switch to ${langAttr[lang][1]}`}
+      >
+        {langAttr[lang][1]}
+      </button>
+    ))
+
+  if(listOnly)return<>{list}</>
+  return<i id={id}className={className}title={title}>
+    {list}
+  </i>
 }

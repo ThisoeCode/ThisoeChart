@@ -16,12 +16,14 @@ export default function HTML({children,}:Readonly<{children:React.ReactNode,}>){
     langKey: LangKey = store('lang').get as LangKey ?? initLang
 
   // Set lang when first load
-  useEffect(() => {
-    store('lang').ifNullSet(mapBrowserLangToThisoeLang(navigator.language))
-    const currentLang = store('lang').get ?? initLang
-    if(!(currentLang in langAttr)){
-      store('lang').set(initLang)
-    }
+  useEffect(()=>{
+    // TODO: DELETE
+    console.log('[TEST] navigator.language = ',navigator.language)
+    const
+      detectedLang = mapBrowserLangToThisoeLang(navigator.language),
+      currentLang = store('lang').get ?? initLang
+    store('lang').ifNullSet(detectedLang)
+    if(!(currentLang in langAttr)) store('lang').set(initLang)
   }, [])
 
   // Set theme when first load

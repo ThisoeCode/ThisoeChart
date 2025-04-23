@@ -69,7 +69,7 @@ rankpage:{
         },
         switch2: {
           en: ' list',
-          ja: 'になる',
+          ja: '',
           ko: '',
           hans: '列表',
           hant: '列表',
@@ -79,7 +79,14 @@ rankpage:{
   },
 },
 oshi: {
-  
+  h1:{
+    en:'Oshi Ranking',
+    ja:'推しランキング',
+    ko:'오시 랭킹',
+    hans:'单推排行',
+    hant:'推排行',
+    ina:'My Loves',
+  },
 },
 vsongs:{
   

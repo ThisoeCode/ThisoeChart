@@ -5,3 +5,24 @@ main{
     width:min(720pt,90vw);
   }
 }
+
+/******* Alist *******/
+ol{
+  gap:9pt;
+  margin:9pt 0;
+  padding:0 30pt;
+}
+li{
+  display:flex;
+  flex-direction:row;
+  border-radius:7pt;
+  outline:#aaa solid 1px;
+  cursor:grab;
+  transition:background-color 0.3s ease;
+}
+li:active{
+  background-color:#ccc7;
+  cursor:grabbing;
+}.dark li:active{
+  background-color:#999c;
+}

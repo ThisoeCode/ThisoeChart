@@ -2,6 +2,7 @@ import type { SupportedThisoeLang, SupportedLangAttr, ZaScript, FinalScript, } f
 import { store } from "./client"
 import { initLang } from "./config"
 import _ from "@/script"
+import { Noto } from "./fonts"
 
 // CONFIG: Supported Langs
 export type _thisoelang = 'en'|'ja'|'hans'|'hant'|'ko'|'ina'
@@ -19,27 +20,37 @@ export const
     'zh-Hans','zh-Hant',
   ] as const,
 
-  /** `ThisoeLang: [HtmlLangAttr, LanguageName, ThisoeLangCode]` */
-  langAttr:{[Key in SupportedThisoeLang]:[SupportedLangAttr,string,string?]} = {
-    en:['en','English','en'],
-    ja:['ja','日本語','ja'],
-    ko:['ko','한국어','ko'],
-    hans:['zh-Hans','中文 (简体)','hans'],
-    hant:['zh-Hant','中文 (繁體)','hant'],
+
+
+  /** ```
+   * [0]: HtmlLangAttr,
+   * [1]: LanguageName,
+   * [2]: ThisoeLangCode,
+   * [3]: Sans (style),
+   * [4]: Serif (style),
+   * ]
+   * ``` */
+  langAttr:{[Key in SupportedThisoeLang]:[SupportedLangAttr,string,string,string,string]} = {
+    en:['en','English','en',Noto.sans.style.fontFamily,Noto.serif.style.fontFamily],
+    ja:['ja','日本語','ja',Noto.sansJP.style.fontFamily,Noto.serifJP.style.fontFamily],
+    ko:['ko','한국어','ko',Noto.sansKR.style.fontFamily,Noto.serifKR.style.fontFamily],
+    hans:['zh-Hans','中文 (简体)','hans',Noto.sansSC.style.fontFamily,Noto.serifSC.style.fontFamily],
+    hant:['zh-Hant','中文 (繁體)','hant',Noto.sansTC.style.fontFamily,Noto.serifTC.style.fontFamily],
     // dialects and fictional langs
-    ina:['en','Ina Script (Wah)','ina'],
+    ina:['en','Ina Script (Wah)','ina','visitor-script','visitor-script'],
   }as const,
 
 /** Convert ThisoeLangCode to html lang attr */
-attrFor=(lang:SupportedThisoeLang)=>(langAttr[lang]?.[0] || store('lang').get || 'en') as SupportedLangAttr,
+attrFor=(lang:SupportedThisoeLang)=>(langAttr[lang]?.[0] || store('lang').get || initLang) as SupportedLangAttr,
 /** Convert html lang attr to ThisoeLangCode */
 langFor=(attr:SupportedLangAttr)=>
   (Object.keys(langAttr) as SupportedThisoeLang[])
-    .find(key=>langAttr[key][0]===attr) || store('lang').get || 'en',
+    .find(key=>langAttr[key][0]===attr) || store('lang').get || initLang,
+
 /** Convert browser locale (e.g., 'en-US', 'ja', 'zh-CN') to `SupportedThisoeLang` _[by ChatGPT-4o]_ */
 mapBrowserLangToThisoeLang = (browserLang: string): SupportedThisoeLang => {
   // Default
-  if(!browserLang) return 'en'
+  if(!browserLang) return initLang
 
   // Config
   const
@@ -84,7 +95,7 @@ mapBrowserLangToThisoeLang = (browserLang: string): SupportedThisoeLang => {
 
 
   // Fallback
-  return 'en'
+  return initLang
 }
 
 /////// FUNC script() ///////

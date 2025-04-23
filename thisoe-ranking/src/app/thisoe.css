@@ -3,6 +3,9 @@
   --thisoe:#178577;
   --thisoe-faint:#DAE8E5;
   --thisoe-faint-bg:#17857730;
+  /* Default values that will be overridden */
+  --sans: var(--font-noto-sans);
+  --serif: var(--font-noto-serif);
 }
 
 /* fonts*/
@@ -18,7 +21,7 @@ html[lang="zh-Hant"] *{font-family:var(--serif-hant)}
   background:transparent;
   font-size:12pt;line-height:1;
   font-weight:normal;text-decoration:none;
-  font-family:var(--serif),var(--serif-ja),var(--serif-ko),var(--serif-hans),var(--serif-hant),serif;
+  font-family:var(--serif);
   touch-action:none; /* dndkit requirement */
 }
 
@@ -29,7 +32,7 @@ html,body{
 }
 
 i,button,a,p{all:unset}
-i,ol,li{display:flex;flex-direction:column}
+i,ol{display:flex;flex-direction:column}
 li{list-style-type:none}
 img{
   user-select:none;-webkit-user-drag:none;
@@ -79,6 +82,18 @@ hr{
 
 
 
+/* dialog */
+.backdrop{
+  z-index:99;
+  position:fixed;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  background-color:#0009;
+}
+
+
+
 /* header */
 header{
   position:fixed; top:0;left:0;
@@ -104,7 +119,21 @@ header{
     &>button:active{scale:.93}
   }
 }
-
+#lang-dialog{
+  position:fixed;
+  top:77px; right:0;
+  margin:0;
+  background-color:#ccc;
+  border-radius:9pt;
+  padding:18pt;
+  &>button{
+    margin:0;
+    flex: 1 1 0;
+    white-space: nowrap;
+  }&>button:hover{
+    background-color:#ddd;
+  }
+}
 
 
 /* TODO DELETE */

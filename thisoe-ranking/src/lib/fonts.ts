@@ -46,6 +46,4 @@ const serifTC = Noto_Serif_TC({
 
 // EXPORT
 export const
-  Noto = {sans,sansJP,sansKR,sansSC,sansTC,serif,serifJP,serifKR,serifSC,serifTC},
-
-  NotoClass = `${sans.variable} ${sansJP.variable} ${sansKR.variable} ${sansSC.variable} ${sansTC.variable} ${serif.variable} ${serifJP.variable} ${serifKR.variable} ${serifSC.variable} ${serifTC.variable}`
+  Noto = {sans,sansJP,sansKR,sansSC,sansTC,serif,serifJP,serifKR,serifSC,serifTC}
