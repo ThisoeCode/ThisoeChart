@@ -1,21 +1,8 @@
 'use client'
 import { SL, langAttr, attrFor } from '@/lib/script'
-import { useCallback } from 'react'
 import { store } from '@/lib/client'
 import { initLang } from '@/lib/config'
-import localfont from 'next/font/local'
 import type{ cit, SupportedThisoeLang as STL } from '@/lib/ts'
-import type{ NextFont } from 'next/dist/compiled/@next/font'
-
-const visitorScript = localfont({
-  src:[
-    { path:'../fonts/visitor_script/VisitorScript.otf', weight:'400' },
-    { path:'../fonts/visitor_script/VisitorScript-Bold.otf', weight:'700' },
-    { path:'../fonts/visitor_script/VisitorScript-Italic.otf', weight:'400', style:'italic' },
-    { path:'../fonts/visitor_script/VisitorScript-Bold_Italic.otf', weight:'700', style:'italic' },
-  ],
-  display:'swap',
-})
 
 export default function LangMenu({id,className,title,listOnly}:Readonly<{
   listOnly?:boolean
@@ -24,15 +11,24 @@ export default function LangMenu({id,className,title,listOnly}:Readonly<{
     currentLang = store('lang').get ?? initLang,
     setLang = (newLang: STL) => store('lang').set(newLang),
 
-    switchLang = useCallback((newLang: STL) => {
+    switchLang = (newLang: STL)=>{
       setLang(newLang)
       document.documentElement.lang = attrFor(newLang)
-    },[]),
+
+      // Handle fictional languages by adding/removing CSS classes
+      // First remove all language classes
+      document.body.classList.remove('lang-ina') // Add more as needed
+      // Then add the appropriate class if it's a fictional language
+      if (newLang === 'ina') {
+        document.body.classList.add('lang-ina')
+      }
+      // Add more fictional languages as needed with similar if statements
+
+      window.location.reload()
+    },
   
-    // Special fonts
-    specialFonts:Array<[STL,NextFont]> = [
-      ['ina', visitorScript],
-    ],
+    // Special fonts styling overrides
+    specialLangs = ['ina'],
 
     list = SL.map(lang=>(
       <button
@@ -41,9 +37,11 @@ export default function LangMenu({id,className,title,listOnly}:Readonly<{
         className={
           currentLang === lang ? 'current-lang' : ''
         }
-        style={
-          specialFonts.find(([special])=>special===lang)?.[1].style
-        }
+        style={{fontFamily:
+          specialLangs.includes(lang)
+            ? 'var(--visitor-script)'
+            : langAttr[lang][3].style.fontFamily
+        }}
         aria-label={`Switch to ${langAttr[lang][1]}`}
       >
         {langAttr[lang][1]}

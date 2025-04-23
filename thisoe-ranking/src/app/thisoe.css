@@ -8,12 +8,33 @@
   --serif: var(--font-noto-serif);
 }
 
-/* fonts*/
-html[lang="en"] *{font-family:var(--serif)}
-html[lang="ja"] *{font-family:var(--serif-ja)}
-html[lang="ko"] *{font-family:var(--serif-ko)}
-html[lang="zh-Hans"] *{font-family:var(--serif-hans)}
-html[lang="zh-Hant"] *{font-family:var(--serif-hant)}
+/* fonts */
+html[lang="en"]{
+  --sans: var(--sans-latin);
+  --serif: var(--serif-latin);
+}
+html[lang="ja"]{
+  --sans: var(--sans-ja);
+  --serif: var(--serif-ja);
+}
+html[lang="ko"]{
+  --sans: var(--sans-ko);
+  --serif: var(--serif-ko);
+}
+html[lang="zh-Hans"]{
+  --sans: var(--sans-hans);
+  --serif: var(--serif-hans);
+}
+html[lang="zh-Hant"]{
+  --sans: var(--sans-hant);
+  --serif: var(--serif-hant);
+}
+/* fictional langs */
+.lang-ina{
+  --sans: var(--visitor-script);
+  --serif: var(--visitor-script);
+}
+html *{font-family:var(--serif)}
 
 /* resets */
 *{
@@ -21,7 +42,6 @@ html[lang="zh-Hant"] *{font-family:var(--serif-hant)}
   background:transparent;
   font-size:12pt;line-height:1;
   font-weight:normal;text-decoration:none;
-  font-family:var(--serif);
   touch-action:none; /* dndkit requirement */
 }
 

@@ -2,7 +2,8 @@ import type { SupportedThisoeLang, SupportedLangAttr, ZaScript, FinalScript, } f
 import { store } from "./client"
 import { initLang } from "./config"
 import _ from "@/script"
-import { Noto } from "./fonts"
+import { Noto, visitorScript } from "./fonts"
+import type{ NextFontWithVariable as NFWV } from "next/dist/compiled/@next/font"
 
 // CONFIG: Supported Langs
 export type _thisoelang = 'en'|'ja'|'hans'|'hant'|'ko'|'ina'
@@ -22,22 +23,23 @@ export const
 
 
 
-  /** ```
+  /**
+   * LANG CONFIG
+   * ```
    * [0]: HtmlLangAttr,
    * [1]: LanguageName,
    * [2]: ThisoeLangCode,
-   * [3]: Sans (style),
-   * [4]: Serif (style),
-   * ]
+   * [3]: Sans,
+   * [4]: Serif,
    * ``` */
-  langAttr:{[Key in SupportedThisoeLang]:[SupportedLangAttr,string,string,string,string]} = {
-    en:['en','English','en',Noto.sans.style.fontFamily,Noto.serif.style.fontFamily],
-    ja:['ja','日本語','ja',Noto.sansJP.style.fontFamily,Noto.serifJP.style.fontFamily],
-    ko:['ko','한국어','ko',Noto.sansKR.style.fontFamily,Noto.serifKR.style.fontFamily],
-    hans:['zh-Hans','中文 (简体)','hans',Noto.sansSC.style.fontFamily,Noto.serifSC.style.fontFamily],
-    hant:['zh-Hant','中文 (繁體)','hant',Noto.sansTC.style.fontFamily,Noto.serifTC.style.fontFamily],
+  langAttr:{[Key in SupportedThisoeLang]:[SupportedLangAttr,string,string,NFWV,NFWV]} = {
+    en:['en','English','en',Noto.sans,Noto.serif],
+    ja:['ja','日本語','ja',Noto.sansJP,Noto.serifJP],
+    ko:['ko','한국어','ko',Noto.sansKR,Noto.serifKR],
+    hans:['zh-Hans','中文 (简体)','hans',Noto.sansSC,Noto.serifSC],
+    hant:['zh-Hant','中文 (繁體)','hant',Noto.sansTC,Noto.serifTC],
     // dialects and fictional langs
-    ina:['en','Ina Script (Wah)','ina','visitor-script','visitor-script'],
+    ina:['en','Ina Script (Wah)','ina',visitorScript,visitorScript],
   }as const,
 
 /** Convert ThisoeLangCode to html lang attr */

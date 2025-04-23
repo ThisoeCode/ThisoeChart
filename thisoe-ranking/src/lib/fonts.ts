@@ -1,9 +1,10 @@
 import { Noto_Sans, Noto_Sans_JP, Noto_Sans_KR, Noto_Sans_SC, Noto_Sans_TC, Noto_Serif, Noto_Serif_JP, Noto_Serif_KR, Noto_Serif_SC, Noto_Serif_TC } from 'next/font/google'
+import localFont from 'next/font/local'
 
 // SANS
 const sans = Noto_Sans({
   subsets:['latin'], weight:['200', '300', '500', '700'],
-  variable: '--sans',
+  variable: '--sans-latin',
 })
 const sansJP = Noto_Sans_JP({
   subsets:['latin'], weight:['200', '300', '500', '700'],
@@ -25,7 +26,7 @@ const sansTC = Noto_Sans_TC({
 // SERIF
 const serif = Noto_Serif({
   subsets:['latin'], weight:['200', '300', '500', '700'],
-  variable: '--serif',
+  variable: '--serif-latin',
 })
 const serifJP = Noto_Serif_JP({
   subsets:['latin'], weight:['200', '300', '500', '700'],
@@ -43,7 +44,18 @@ const serifTC = Noto_Serif_TC({
   subsets:['latin'], weight:['200', '300', '500', '700'],
   variable: '--serif-hant',
 })
+const VisitorScript = localFont({
+  src:[
+    { path:'../fonts/visitor_script/VisitorScript.otf', weight:'400' },
+    { path:'../fonts/visitor_script/VisitorScript-Bold.otf', weight:'700' },
+    { path:'../fonts/visitor_script/VisitorScript-Italic.otf', weight:'400', style:'italic' },
+    { path:'../fonts/visitor_script/VisitorScript-Bold_Italic.otf', weight:'700', style:'italic' },
+  ],
+  display:'swap',
+  variable: '--visitor-script',
+})
 
 // EXPORT
 export const
-  Noto = {sans,sansJP,sansKR,sansSC,sansTC,serif,serifJP,serifKR,serifSC,serifTC}
+  Noto = {sans,sansJP,sansKR,sansSC,sansTC,serif,serifJP,serifKR,serifSC,serifTC},
+  visitorScript = VisitorScript
