@@ -1,5 +1,6 @@
 import Acard from "@/components/A/card"
 import { cit, Oshi } from "@/lib/ts"
+import Emoji from "@/components/emoji"
 
 export default function Thin({v,i,className,id,title}:Readonly<{
   v:Oshi
@@ -9,7 +10,7 @@ export default function Thin({v,i,className,id,title}:Readonly<{
     rank = `#${i+1}`
 
   return<Acard ctt={v}className={className}id={id}title={title}>
-    <b>{i===0?'👑':rank}</b>
+    <Emoji><b>{i===0?'👑':rank}</b></Emoji>
     <p>{v._title}</p>
   </Acard>
 }

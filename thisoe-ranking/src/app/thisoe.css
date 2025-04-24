@@ -80,6 +80,16 @@ hr{
   background-color:#fff;
 }
 
+/* Twemoji */
+.twemoji {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin: 0 1pt;
+  /* vertical-align: -0.3em; */
+  border-radius:0;
+}
+
 
 
 /* loading */

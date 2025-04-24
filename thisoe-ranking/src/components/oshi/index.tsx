@@ -6,8 +6,8 @@ import { useState } from "react"
 import { store } from "@/lib/client"
 import Anew from'./card/anew'
 import type{ Oshi } from "@/lib/ts"
-import Thin from "./card/thin"
-import Detail from "./card"
+import Thin from './card/Thin'
+import Detail from "./card/Detail"
 import { TEST_DATA } from "@/tmp"
 import './_.css'
 
