@@ -1,33 +1,20 @@
-import NextAuth,{NextAuthConfig}from"next-auth"
+import NextAuth,{type NextAuthConfig}from"next-auth"
 import Google from "next-auth/providers/google"
-import{Provider}from"next-auth/providers"
 import{MongoDBAdapter}from"@auth/mongodb-adapter"
+import{env}from"./env"
 import{con}from"./_insu"
 
-const providers:Provider[]=[
-  Google,
-]
-
-export const
-
-providerMap = providers.map((provider)=>{
-  if(typeof provider==="function"){
-    const providerData = provider()
-    return{id:providerData.id,name:providerData.name}
-  }
-  return{id:provider.id,name:provider.name}
-}).filter((provider)=>provider.id!=="credentials"),
-
-{handlers,auth,signIn,signOut} = NextAuth({
-  providers,
+export const{handlers,auth,signIn,signOut}=NextAuth({
+  providers:[
+    Google,
+  ],
   adapter:MongoDBAdapter(con,{
-    databaseName:process.env.DB_AUTH,
+    databaseName:env.DB_NAME,
   }),
   session:{strategy:"jwt"},
-  callbacks:{
-    async signIn({user}){
-      // const auser = await userDB.findOne({e:user.email?})
-      return !user?true:true
-    },
-  },
+  // callbacks:{
+  //   async signIn({user}){
+  //     return !user?true:true
+  //   },
+  // },
 }satisfies NextAuthConfig)
