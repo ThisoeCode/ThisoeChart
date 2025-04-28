@@ -3,11 +3,14 @@ import { SL, langAttr, attrFor } from '@/lib/script'
 import { store } from '@/lib/client'
 import { initLang } from '@/lib/config'
 import type{ cit, SupportedThisoeLang as STL } from '@/lib/ts'
+import { MountContext } from '@/contexts/mount'
+import { useContext } from 'react'
 
 export default function LangMenu({id,className,title,listOnly}:Readonly<{
   listOnly?:boolean
 }&cit>){
   const
+    {setMounted}=useContext(MountContext),
     currentLang = store('lang').get ?? initLang,
     setLang = (newLang: STL) => store('lang').set(newLang),
 
@@ -15,8 +18,8 @@ export default function LangMenu({id,className,title,listOnly}:Readonly<{
       setLang(newLang)
       document.documentElement.lang = attrFor(newLang)
 
-      // Handle fictional languages by adding/removing CSS classes
-      // First remove all language classes
+      // Handle fictional languages
+      //   First remove all language classes
       document.body.classList.remove('lang-ina') // Add more as needed
       // Then add the appropriate class if it's a fictional language
       if (newLang === 'ina') {
@@ -24,6 +27,7 @@ export default function LangMenu({id,className,title,listOnly}:Readonly<{
       }
       // Add more fictional languages as needed with similar if statements
 
+      setMounted(false)
       window.location.reload()
     },
   
@@ -34,9 +38,8 @@ export default function LangMenu({id,className,title,listOnly}:Readonly<{
       <button
         key={lang}
         onClick={()=>switchLang(lang)}
-        className={
-          currentLang === lang ? 'current-lang' : ''
-        }
+        /** TODO: Make CSS of  */
+        className={currentLang===lang ? 'current-lang' : void''}
         style={{fontFamily:
           specialLangs.includes(lang)
             ? 'var(--visitor-script)'

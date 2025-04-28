@@ -2,25 +2,35 @@
 import'./A.css'
 import { store } from "@/lib/client"
 import script from '@/lib/script'
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import Header from '../HEADER'
-import ArankpageSkeleton from '@/skeletons/rankpage'
+import ArankpageSkeleton from '../skeletons/rankpage'
+import MountProvider, { MountContext } from '@/contexts/mount'
 
-export default function Arankpage(
-    {Anew,h1,children,toggleThin,id,className}:Readonly<{
-    Anew:React.ReactNode
-    h1:string
-    /** Put `<Alist>` in. */
-    children:React.ReactNode
-    toggleThin:(isThin:boolean)=>void
-    id:string
-    className?:string
-  }>
-){
+type Props = Readonly<{
+  Anew:React.ReactNode
+  h1:string
+  /** Put `<Alist>` in. */
+  children:React.ReactNode
+  toggleThin:(isThin:boolean)=>void
+  id:string
+  className?:string
+}>
+
+export default function Arankpage(attr:Props){
+  return<MountProvider>
+    <InnerRankpage {...attr}/>
+  </MountProvider>
+}
+
+const InnerRankpage=(
+  {Anew,h1,children,toggleThin,id,className}:Props
+)=>{
   const
     thin='y', thic='n',
     [isThin,setThin]=useState(store(id+'_thin').get===thin?true:false),
-    [mounted,setMounted]=useState(false),
+    // ,
+    {mounted,setMounted} = useContext(MountContext),
     handThic=()=>{
       const newThin = !isThin
       setThin(newThin)
@@ -32,9 +42,9 @@ export default function Arankpage(
     store(id+'_thin').ifNullSet('n')
     toggleThin(store(id+'_thin').get === 'y')
     setMounted(true)
-  },[id,toggleThin])
+  },[id,toggleThin,setMounted])
 
-  if(!mounted)return <ArankpageSkeleton header={<Header h1={h1}/>}/>
+  if(!mounted)return<ArankpageSkeleton/>
   return<main id={id}className={className}>
     <Header h1={h1}>
       <button id="thin-btn"onClick={handThic}title={

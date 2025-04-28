@@ -1,0 +1,55 @@
+:root{
+  --skeleton-bg: #5555;
+  --skeleton-highlight: #7775;
+  --skeleton-animation: skeleton-loading 3s ease-in-out infinite;
+  --skeleton-gradient:linear-gradient(
+    90deg,
+    var(--skeleton-bg) 25%,
+    var(--skeleton-highlight) 50%,
+    var(--skeleton-bg) 75%
+  );
+  --skeleton-size: 200% 100%;
+}
+@keyframes skeleton-loading {
+  0% {background-position: 200% 0;}
+  100% {background-position: -200% 0;}
+}
+
+
+
+.skeleton{
+  main:has(&){cursor:progress}
+
+  /* HEADER */
+  & *:not(ol):not(#btn-wrap){
+    display:block;
+    border-radius:9pt;
+    background:var(--skeleton-gradient);
+    background-size:var(--skeleton-size);
+    animation:var(--skeleton-animation);
+  }
+  &>h1::before{
+    content:'　　　　　　　';
+  }
+  &>#btn-wrap{
+    display:flex;
+    gap:10pt;
+    height:30pt;
+    &>button{cursor:progress}
+    &>button:active{scale:1.1}
+  }
+
+  /* rankpage */
+  &>ol{
+    display:flex;
+    gap:10pt;
+    &>li{
+      pointer-events:none;
+      height:58pt;
+      outline:0;
+    }
+  }
+
+  /* ... */
+
+}

@@ -135,6 +135,7 @@ header{
   &>h1{
     margin-left:30pt;
     font-size:27pt;
+    line-height:30pt;
     font-weight:500;
   }
   &>#btn-wrap{
