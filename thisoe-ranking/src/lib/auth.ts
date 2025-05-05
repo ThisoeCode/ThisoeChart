@@ -4,7 +4,9 @@ import{MongoDBAdapter}from"@auth/mongodb-adapter"
 import{env}from"./env"
 import{con}from"./_insu"
 
-export const{handlers,auth,signIn,signOut}=NextAuth({
+export const
+
+NextConf={
   providers:[
     Google,
   ],
@@ -17,4 +19,8 @@ export const{handlers,auth,signIn,signOut}=NextAuth({
   //     return !user?true:true
   //   },
   // },
-}satisfies NextAuthConfig)
+}satisfies NextAuthConfig,
+
+
+
+{handlers,auth,signIn,signOut}=NextAuth(NextConf)

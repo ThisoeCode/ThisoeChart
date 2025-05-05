@@ -39,7 +39,7 @@ export const
     hans:['zh-Hans','中文 (简体)','hans',Noto.sansSC,Noto.serifSC],
     hant:['zh-Hant','中文 (繁體)','hant',Noto.sansTC,Noto.serifTC],
     // dialects and fictional langs
-    ina:['en','Ina Script (Wah)','ina',visitorScript,visitorScript],
+    ina:['en','Ina Script','ina',visitorScript,visitorScript],
   }as const,
 
 /** Convert ThisoeLangCode to html lang attr */

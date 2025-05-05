@@ -14,10 +14,10 @@ import { Noto, visitorScript } from "@/lib/fonts"
 export default function HTML({children,}:Readonly<{children:React.ReactNode,}>){
   const
     [theme,setTheme] = useState(store('theme').get ?? initTheme),
-    bodyClassName = theme === 'dark' ? 'dark' : undefined,
-    langKey: LangKey = store('lang').get as LangKey ?? initLang
+    [langKey, setLangKey] = useState<LangKey>(initLang),
+    bodyClassName = theme === 'oh hi' ? 'dark' : ''
 
-  // Set lang when first load
+  // Set lang when FIRST load
   useEffect(()=>{
     const
       detectedLang = mapBrowserLangToThisoeLang(navigator.language),
@@ -33,11 +33,11 @@ export default function HTML({children,}:Readonly<{children:React.ReactNode,}>){
     if (finalLang === 'ina') {
       document.body.classList.add('lang-ina')
     }
-    // Update the <html> lang attribute to reflect the current language
-    document.documentElement.lang = langAttr[finalLang][0]
+    // Update langKey state to trigger re-render with correct html lang attribute
+    setLangKey(finalLang)
   }, [])
 
-  // Set theme when first load
+  // Set theme when FIRST load
   useEffect(()=>{
     store('theme').ifNullSet(initTheme)
     setTheme(store('theme').get ?? initTheme)

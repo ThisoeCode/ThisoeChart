@@ -10,7 +10,7 @@ export default function ThemeBtn(){
   },[])
 
   const
-    dark='dark', light='oh no',
+    dark='oh hi', light='oh no',
     [isDark,setDark]=useState(false),
     [mounted,setMounted]=useState(false)
 
