@@ -95,6 +95,16 @@ export type Song={
 }&Card
 
 
+
+// AUTH
+export interface OneTapOptions{
+  auto_select?: boolean
+  cancel_on_tap_outside?: boolean
+  prompt_parent_id?: string
+}
+
+
+
 // script.ts
 import type{_thisoelang,_sla, langAttr}from"@/lib/script"
 import SCRIPT from "@/script"
@@ -103,6 +113,8 @@ export type SupportedThisoeLang = _thisoelang
 export type SupportedLangAttr = _sla
 
 export type LangKey = keyof typeof langAttr
+
+export type LangNames = keyof typeof SCRIPT.langs
 
 // export type MidScript = { [key: string]: MidScript }|string
 

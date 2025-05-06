@@ -50,6 +50,10 @@
     }
   }
 
-  /* ... */
-
+  /* DARK */
+  /* .dark &{
+    & header{
+      background-color:#011007;
+    }
+  } */
 }

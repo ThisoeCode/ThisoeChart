@@ -1,4 +1,4 @@
-import type { SupportedThisoeLang, SupportedLangAttr, ZaScript, FinalScript, } from "@/lib/ts"
+import type { SupportedThisoeLang, SupportedLangAttr, ZaScript, FinalScript, LangNames, } from "@/lib/ts"
 import { store } from "./client"
 import { initLang } from "./config"
 import _ from "@/script"
@@ -32,12 +32,12 @@ export const
    * [3]: Sans,
    * [4]: Serif,
    * ``` */
-  langAttr:{[Key in SupportedThisoeLang]:[SupportedLangAttr,string,string,NFWV,NFWV]} = {
+  langAttr:{[Key in SupportedThisoeLang]:[SupportedLangAttr,LangNames,string,NFWV,NFWV]} = {
     en:['en','English','en',Noto.sans,Noto.serif],
     ja:['ja','日本語','ja',Noto.sansJP,Noto.serifJP],
     ko:['ko','한국어','ko',Noto.sansKR,Noto.serifKR],
-    hans:['zh-Hans','中文 (简体)','hans',Noto.sansSC,Noto.serifSC],
-    hant:['zh-Hant','中文 (繁體)','hant',Noto.sansTC,Noto.serifTC],
+    hans:['zh-Hans','简体中文','hans',Noto.sansSC,Noto.serifSC],
+    hant:['zh-Hant','繁體中文','hant',Noto.sansTC,Noto.serifTC],
     // dialects and fictional langs
     ina:['en','Ina Script','ina',visitorScript,visitorScript],
   }as const,

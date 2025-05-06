@@ -1,23 +1,22 @@
 'use client'
 import { store } from "@/lib/client"
-import { initTheme, initLang } from "@/lib/config"
+import { initStore, initTheme, initLang } from "@/lib/config"
 import { langAttr, mapBrowserLangToThisoeLang } from "@/lib/script"
 import { useEffect, useState } from "react"
 import type{ LangKey } from "@/lib/ts"
 import { Noto, visitorScript } from "@/lib/fonts"
 
-
 /** 
  * `<html><body>{children}</body></html>`
  * @example <HTML>{children}</HTML>
  */
-export default function HTML({children,}:Readonly<{children:React.ReactNode,}>){
-  const
-    [theme,setTheme] = useState(store('theme').get ?? initTheme),
-    [langKey, setLangKey] = useState<LangKey>(initLang),
-    bodyClassName = theme === 'oh hi' ? 'dark' : ''
+export default function HTML({children,theme:cookieTheme}:Readonly<{children:React.ReactNode,theme:string}>){
 
-  // Set lang when FIRST load
+
+// ======= 1. Lang Provider =======
+
+  const[langKey,setLangKey]=useState<LangKey>(initLang)
+
   useEffect(()=>{
     const
       detectedLang = mapBrowserLangToThisoeLang(navigator.language),
@@ -28,28 +27,36 @@ export default function HTML({children,}:Readonly<{children:React.ReactNode,}>){
     // Handle fictional languages via CSS classes
     document.body.classList.remove('lang-ina') // Clear all language classes
 
-    // Determine the final language for HTML and CSS
     const finalLang = (store('lang').get ?? initLang) as LangKey
     if (finalLang === 'ina') {
       document.body.classList.add('lang-ina')
     }
-    // Update langKey state to trigger re-render with correct html lang attribute
     setLangKey(finalLang)
   }, [])
+
+
+// ======= 2. Theme Provider =======
+
+  const
+    [theme,setTheme] = useState(cookieTheme ?? initStore),
+    themeClass = theme === 'oh hi' ? 'dark' : '',
+    trans='background-color .2s ease'
 
   // Set theme when FIRST load
   useEffect(()=>{
     store('theme').ifNullSet(initTheme)
     setTheme(store('theme').get ?? initTheme)
     document.body.classList.toggle('dark', store('theme').get === 'dark')
+    // see layout.tsx Script#set-theme for `beforeInteractive` behaviors
+    document.documentElement.style.transition = trans
+    document.body.style.transition = trans
   },[])
 
-  return<html lang={langAttr[langKey][0]} className={`
-    ${Noto.sans.variable} ${Noto.sansJP.variable} ${Noto.sansKR.variable} ${Noto.sansSC.variable} ${Noto.sansTC.variable}
-    ${Noto.serif.variable} ${Noto.serifJP.variable} ${Noto.serifKR.variable} ${Noto.serifSC.variable} ${Noto.serifTC.variable}
-    ${visitorScript.variable}
-  `}>
-    <body className={bodyClassName}>
+
+///////
+
+  return<html lang={langAttr[langKey][0]} className={`${Noto.sans.variable} ${Noto.sansJP.variable} ${Noto.sansKR.variable} ${Noto.sansSC.variable} ${Noto.sansTC.variable} ${Noto.serif.variable} ${Noto.serifJP.variable} ${Noto.serifKR.variable} ${Noto.serifSC.variable} ${Noto.serifTC.variable} ${visitorScript.variable} ${themeClass}`}>
+    <body>
       {children}
     </body>
   </html>

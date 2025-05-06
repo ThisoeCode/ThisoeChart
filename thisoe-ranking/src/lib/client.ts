@@ -41,7 +41,11 @@ class Store<T=string> {
       return void''
     }
     try{
-      return JSON.parse(item) as T
+      // Check if is obj or array
+      if (item.startsWith('{') || item.startsWith('[')) {
+        return JSON.parse(item) as T
+      }
+      return item as T
     }catch{
       return item as T
     }
@@ -49,7 +53,9 @@ class Store<T=string> {
 
   set(value:T):this {
     if (this.isBrowser) {
-      localStorage.setItem(this.key, JSON.stringify(value))
+      localStorage.setItem(this.key,
+        typeof value==='string' ? value : JSON.stringify(value)
+      )
     }
     this.get = value
     return this

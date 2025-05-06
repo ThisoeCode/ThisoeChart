@@ -1,5 +1,5 @@
 'use client'
-import { SL, langAttr, attrFor } from '@/lib/script'
+import script, { SL, langAttr, attrFor } from '@/lib/script'
 import { store } from '@/lib/client'
 import { initLang } from '@/lib/config'
 import type{ cit, SupportedThisoeLang as STL } from '@/lib/ts'
@@ -40,6 +40,7 @@ export default function LangMenu({id,className,title,listOnly}:Readonly<{
         onClick={()=>switchLang(lang)}
         /** TODO: Make CSS of  */
         className={currentLang===lang ? 'current-lang' : void''}
+        title={script().langs[langAttr[lang][1]]}
         style={{fontFamily:
           specialLangs.includes(lang)
             ? 'var(--visitor-script)'
