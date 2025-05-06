@@ -1,5 +1,5 @@
 'use client'
-import { useOneTap } from "@/test/onetap/useOnetap"
+import { useOneTap } from "@/hooks/useOnetap"
 
 export default function OneTapBtn(){
   const

@@ -4,7 +4,7 @@ import { initStore, initTheme, initLang } from "@/lib/config"
 import { langAttr, mapBrowserLangToThisoeLang } from "@/lib/script"
 import { useEffect, useState } from "react"
 import type{ LangKey } from "@/lib/ts"
-import { Noto, visitorScript } from "@/lib/fonts"
+import { fontClass } from "@/lib/fonts"
 
 /** 
  * `<html><body>{children}</body></html>`
@@ -55,8 +55,11 @@ export default function HTML({children,theme:cookieTheme}:Readonly<{children:Rea
 
 ///////
 
-  return<html lang={langAttr[langKey][0]} className={`${Noto.sans.variable} ${Noto.sansJP.variable} ${Noto.sansKR.variable} ${Noto.sansSC.variable} ${Noto.sansTC.variable} ${Noto.serif.variable} ${Noto.serifJP.variable} ${Noto.serifKR.variable} ${Noto.serifSC.variable} ${Noto.serifTC.variable} ${visitorScript.variable} ${themeClass}`}>
-    <body>
+  return<html
+    lang={langAttr[langKey][0]}
+    className={themeClass}
+  >
+    <body className={fontClass}>
       {children}
     </body>
   </html>
