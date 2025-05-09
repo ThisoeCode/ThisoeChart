@@ -1,7 +1,7 @@
 'use client'
 import { useState } from "react"
 import Dialog from "../Dialog"
-import LangMenu from "../langMenu"
+import LangMenu from "../settings/langMenu"
 
 export default function LangBtn(){
   const

@@ -1,8 +1,6 @@
 "use client"
-
-import { publicEnv } from "@/lib/env"
-import { OneTapOptions } from "@/lib/ts"
 import { signIn } from "next-auth/react"
+import { OneTapOptions } from "@/lib/ts"
 import { useCallback } from "react"
 
 export function useOneTap(options: OneTapOptions = {}) {
@@ -12,11 +10,11 @@ export function useOneTap(options: OneTapOptions = {}) {
 
     if (google?.accounts?.id) {
       google.accounts.id.initialize({
-        client_id: publicEnv.GOOGLE_CLIENT_ID,
+        client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!,
         callback: async (response: { credential: string }) => {
           if (response.credential) {
             try{
-              // Use the standard Google provider instead of a custom credential flow
+              // Use the credential from Google One Tap for authentication
               await signIn("google", {
                 redirect: false,
               })
@@ -41,12 +39,8 @@ export function useOneTap(options: OneTapOptions = {}) {
         })
       } else {
         google.accounts.id.prompt((notification) => {
-          if (notification.isNotDisplayed()) {
-            console.error("[ERR] OneTap not displayed:", notification.getNotDisplayedReason())
-          } else if (notification.isSkippedMoment()) {
-            console.error("[ERR] OneTap skipped:", notification.getSkippedReason())
-          } else if (notification.isDismissedMoment()) {
-            console.error("[ERR] OneTap dismissed:", notification.getDismissedReason())
+          if (notification.isDismissedMoment()) {
+            console.error("[ERR] OneTap dismissed: ", notification.getDismissedReason())
           }
         })
       }

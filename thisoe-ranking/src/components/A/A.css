@@ -1,7 +1,7 @@
 /******* Arankpage *******/
 main{
   &>i{
-    margin:57pt auto 30pt;
+    margin:var(--header-height) auto 30pt;
     width:min(720pt,90vw);
   }
 }

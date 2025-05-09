@@ -11,6 +11,8 @@
   /* Default values that will be overridden */
   --sans: var(--font-noto-sans);
   --serif: var(--font-noto-serif);
+  /* lengths */
+  --header-height:57pt;
 }
 
 /* fonts */
@@ -173,10 +175,10 @@ hr{
 
 header{
   position:fixed; top:0;left:0;
-  height:57pt;
+  height:var(--header-height); /* 57pt */
+  width:100vw;
   display:flex;flex-direction:row;
   align-items:center;
-  width:100vw;
   background-color:var(--moom-light);
 
   &>*{margin:auto}

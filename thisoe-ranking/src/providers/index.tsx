@@ -5,6 +5,7 @@ import { langAttr, mapBrowserLangToThisoeLang } from "@/lib/script"
 import { useEffect, useState } from "react"
 import type{ LangKey } from "@/lib/ts"
 import { fontClass } from "@/lib/fonts"
+import { SessionProvider } from "next-auth/react"
 
 /** 
  * `<html><body>{children}</body></html>`
@@ -60,7 +61,9 @@ export default function HTML({children,theme:cookieTheme}:Readonly<{children:Rea
     className={themeClass}
   >
     <body className={fontClass}>
-      {children}
+      <SessionProvider>
+        {children}
+      </SessionProvider>
     </body>
   </html>
 }

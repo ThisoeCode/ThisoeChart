@@ -57,3 +57,11 @@
     }
   } */
 }
+
+
+
+.img-skeleton{
+  background:var(--skeleton-gradient);
+  background-size:var(--skeleton-size);
+  animation:var(--skeleton-animation);
+}
