@@ -1,6 +1,6 @@
 :root{
   --skeleton-bg: #5555;
-  --skeleton-highlight: #7775;
+  --skeleton-highlight: #9995;
   --skeleton-animation: skeleton-loading 3s ease-in-out infinite;
   --skeleton-gradient:linear-gradient(
     90deg,
@@ -64,4 +64,6 @@
   background:var(--skeleton-gradient);
   background-size:var(--skeleton-size);
   animation:var(--skeleton-animation);
+
+  &.avatar-loading{border-radius:999pt}
 }

@@ -2,11 +2,11 @@ import'./_.css'
 import'@/components/A/A.css'
 
 export default function ArankpageSkeleton(){
-  return<main>
+  return<main className="rankpage">
     <header className="skeleton">
       <h1/>
       <i id="btn-wrap">
-        <button/><button/><button/>
+        <button/><button/><button/><button style={{borderRadius:'999pt'}}/>
       </i>
     </header>
     <i className="skeleton"><ol>

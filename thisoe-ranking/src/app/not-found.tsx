@@ -3,7 +3,7 @@ import Link from "next/link"
 export default function _(){
   return<i id='loading'>
     <h1>404</h1>
-    <h2>- Thisoe Ranking -</h2>
+    <h2>Thisoe Ranking</h2>
     <hr style={{width:'300pt'}}/>
     <p>
       There&apos;s a typo in your URL.

@@ -1,8 +1,72 @@
 /******* Arankpage *******/
-main{
+main.rankpage{
   &>i{
     margin:var(--header-height) auto 30pt;
     width:min(720pt,90vw);
+  }
+  &>header{
+    position:fixed; top:0;left:0;
+    height:var(--header-height); /* 57pt */
+    width:100vw;
+    display:flex;flex-direction:row;
+    align-items:center;
+    background-color:var(--moom-light);
+    transition:background-color .12s ease;
+
+    .dark &{background-color:#011}
+    &>*{margin:auto}
+
+    &>h1{
+      margin-left:30pt;
+      font-size:27pt;
+      line-height:30pt;
+      font-weight:500;
+    }
+    &>#btn-wrap{
+      flex-direction:row;
+      gap:7pt;
+      margin-right:30pt;
+  
+      &>button{
+        width:30pt;height:30pt;
+        cursor:pointer;
+        transition:scale .12s ease;
+        &:hover{scale:1.1}
+        &:active{scale:.93}
+  
+        &#settings-and-auth-btn{
+          position:relative;
+          transition:opacity .2s ease;
+          &>*{
+            position:absolute;
+            top:0;left:0;
+          }
+        }
+      }
+    }
+  }
+}
+
+#lang-dialog{
+  position:fixed;
+  top:81px; right:9pt;
+  gap:7px;
+  margin:0;
+  background-color:var(--thisoe);
+  color:#fff;
+  border-radius:16pt;
+  padding:18pt 16pt 25pt 27pt;
+
+  .dark main &{background-color:#333}
+  &>button{
+    flex: 1 1 0;
+    margin:0;
+    padding:3pt;
+    font-size:16pt;
+    text-align:right;
+    white-space: nowrap;
+    transition:scale .1s ease;
+    &:hover{scale:1.05}
   }
 }
 

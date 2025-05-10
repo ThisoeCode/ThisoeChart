@@ -3,8 +3,8 @@ import { store } from "@/lib/client"
 import { initStore, initTheme, initLang } from "@/lib/config"
 import { langAttr, mapBrowserLangToThisoeLang } from "@/lib/script"
 import { useEffect, useState } from "react"
-import type{ LangKey } from "@/lib/ts"
-import { fontClass } from "@/lib/fonts"
+import type{ LangKey } from "@/types"
+import { fontClasses, Noto } from "@/lib/fonts"
 import { SessionProvider } from "next-auth/react"
 
 /** 
@@ -58,9 +58,9 @@ export default function HTML({children,theme:cookieTheme}:Readonly<{children:Rea
 
   return<html
     lang={langAttr[langKey][0]}
-    className={themeClass}
+    className={`${fontClasses} ${Noto.sans.className} ${Noto.serif.className} ${themeClass}`}
   >
-    <body className={fontClass}>
+    <body>
       <SessionProvider>
         {children}
       </SessionProvider>

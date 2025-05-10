@@ -1,6 +1,6 @@
-import ThemeBtn from "./btns/theme"
-import LangBtn from "./btns/lang"
-import OneTapBtn from "./btns/OneTap"
+import ThemeBtn from "../btns/theme"
+import LangBtn from "../btns/lang"
+import OneTapBtn from "../btns/OneTap"
 
 export default function Header({h1,children}:Readonly<{
   h1:string

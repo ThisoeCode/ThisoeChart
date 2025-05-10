@@ -1,5 +1,6 @@
 import Acard from "@/components/A/card"
-import { cit, Oshi } from "@/lib/ts"
+import { cit } from "@/types"
+import type{ Oshi } from "@/types/oshi"
 import Emoji from "@/components/emoji"
 
 export default function Thin({v,i,className,id,title}:Readonly<{

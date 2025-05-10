@@ -1,6 +1,6 @@
 "use client"
 import { signIn } from "next-auth/react"
-import { OneTapOptions } from "@/lib/ts"
+import { OneTapOptions } from "@/types"
 import { useCallback } from "react"
 
 export function useOneTap(options: OneTapOptions = {}) {

@@ -2,7 +2,7 @@
 import script, { SL, langAttr, attrFor } from '@/lib/script'
 import { store } from '@/lib/client'
 import { initLang } from '@/lib/config'
-import type{ cit, SupportedThisoeLang as STL } from '@/lib/ts'
+import type{ cit, SupportedThisoeLang as STL } from '@/types'
 import { MountContext } from '@/contexts/mount'
 import { useContext } from 'react'
 

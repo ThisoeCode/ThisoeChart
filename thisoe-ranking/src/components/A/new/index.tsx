@@ -1,5 +1,5 @@
 'use client'
-import type{ cit } from "@/lib/ts"
+import type{ cit } from "@/types"
 import'../A.css'
 
 export default function Anew({children,onSubmit,disableSubBtn,/*modDialog,*/className,id,title}:Readonly<{

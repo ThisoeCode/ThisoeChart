@@ -1,46 +1,49 @@
-import type { SupportedThisoeLang, SupportedLangAttr, ZaScript, FinalScript, LangNames, } from "@/lib/ts"
+import type { SupportedThisoeLang, SupportedLangAttr, ZaScript, FinalScript, LangNames, } from "@/types"
 import { store } from "./client"
 import { initLang } from "./config"
 import _ from "@/script"
-import { Noto, visitorScript } from "./fonts"
+import { Noto, inaScript } from "./fonts"
 import type{ NextFontWithVariable as NFWV } from "next/dist/compiled/@next/font"
 
 // CONFIG: Supported Langs
 export type _thisoelang = 'en'|'ja'|'hans'|'hant'|'ko'|'ina'
 export type _sla = 'en'|'ja'|'zh-Hans'|'zh-Hant'|'ko'
+
 export const
-  /** Supported Langs (in Thisoe lang code) */
-  SL:readonly SupportedThisoeLang[] = [
-    'en','ja','ko',
-    'hans','hant',
-    'ina',
-  ] as const,
-  /** Supported Langs (in html lang attr) */
-  SLA:readonly SupportedLangAttr[] = [
-    'en','ja','ko',
-    'zh-Hans','zh-Hant',
-  ] as const,
+
+/** Supported Langs (in Thisoe lang code) */
+SL:readonly SupportedThisoeLang[] = [
+  'en','ja','ko',
+  'hans','hant',
+  'ina',
+] as const,
+/** Supported Langs (in html lang attr) */
+SLA:readonly SupportedLangAttr[] = [
+  'en','ja','ko',
+  'zh-Hans','zh-Hant',
+] as const,
 
 
 
-  /**
-   * LANG CONFIG
-   * ```
-   * [0]: HtmlLangAttr,
-   * [1]: LanguageName,
-   * [2]: ThisoeLangCode,
-   * [3]: Sans,
-   * [4]: Serif,
-   * ``` */
-  langAttr:{[Key in SupportedThisoeLang]:[SupportedLangAttr,LangNames,string,NFWV,NFWV]} = {
-    en:['en','English','en',Noto.sans,Noto.serif],
-    ja:['ja','日本語','ja',Noto.sansJP,Noto.serifJP],
-    ko:['ko','한국어','ko',Noto.sansKR,Noto.serifKR],
-    hans:['zh-Hans','简体中文','hans',Noto.sansSC,Noto.serifSC],
-    hant:['zh-Hant','繁體中文','hant',Noto.sansTC,Noto.serifTC],
-    // dialects and fictional langs
-    ina:['en','Ina Script','ina',visitorScript,visitorScript],
-  }as const,
+/**
+ * LANG CONFIG
+ * ```
+ * [0]: HtmlLangAttr,
+ * [1]: LanguageName,
+ * [2]: ThisoeLangCode,
+ * [3]: SansFont,
+ * [4]: SerifFont,
+ * ```
+ */
+langAttr:{[Key in SupportedThisoeLang]:[SupportedLangAttr,LangNames,string,NFWV,NFWV]} = {
+  en:['en','English','en',Noto.sans,Noto.serif],
+  ja:['ja','日本語','ja',Noto.sansJP,Noto.serifJP],
+  ko:['ko','한국어','ko',Noto.sansKR,Noto.serifKR],
+  hans:['zh-Hans','简体中文','hans',Noto.sansSC,Noto.serifSC],
+  hant:['zh-Hant','繁體中文','hant',Noto.sansTC,Noto.serifTC],
+  // dialects and fictional langs
+  ina:['en','Ina Script','ina',inaScript,inaScript],
+}as const,
 
 /** Convert ThisoeLangCode to html lang attr */
 attrFor=(lang:SupportedThisoeLang)=>(langAttr[lang]?.[0] || store('lang').get || initLang) as SupportedLangAttr,

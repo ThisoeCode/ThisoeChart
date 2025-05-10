@@ -1,4 +1,4 @@
-import type{ cit } from "@/lib/ts"
+import type{ cit } from "@/types"
 import AnewInput from "./input"
 
 /** Input With Button

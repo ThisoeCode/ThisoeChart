@@ -1,7 +1,7 @@
 'use client'
 import'../A.css'
 import { useEffect, useRef } from 'react'
-import type{ cit } from "@/lib/ts"
+import type{ cit } from "@/types"
 
 /**
  * @example

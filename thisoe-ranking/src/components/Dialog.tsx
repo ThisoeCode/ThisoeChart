@@ -1,5 +1,5 @@
 'use client'
-import { cit } from "@/lib/ts"
+import { cit } from "@/types"
 
 export default function Dialog({children,isOpen,onClose,id,className,title}:Readonly<{
   children:React.ReactNode

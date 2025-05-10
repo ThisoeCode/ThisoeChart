@@ -4,7 +4,7 @@ import Alist from "../A/list"
 import Arankpage from "../A/rankpage"
 import { useState } from "react"
 import { store } from "@/lib/client"
-import type{ Oshi } from "@/lib/ts"
+import type{ Oshi } from "@/types/oshi"
 import Anew from'./card/anew'
 import Thin from './card/Thin'
 import Detail from "./card/Detail"

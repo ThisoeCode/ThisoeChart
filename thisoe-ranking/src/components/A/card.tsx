@@ -1,5 +1,5 @@
 import'./A.css'
-import type{ Card, cit } from "@/lib/ts"
+import type{ Card, cit } from "@/types"
 import { useSortable } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
 

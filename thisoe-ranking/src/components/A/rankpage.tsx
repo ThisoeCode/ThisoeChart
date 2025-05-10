@@ -3,7 +3,7 @@ import'./A.css'
 import { store } from "@/lib/client"
 import script from '@/lib/script'
 import { useContext, useEffect, useState } from "react"
-import Header from '../HEADER'
+import Header from './Header'
 import ArankpageSkeleton from '../skeletons/rankpage'
 import MountProvider, { MountContext } from '@/contexts/mount'
 
@@ -44,8 +44,10 @@ const InnerRankpage=(
     setMounted(true)
   },[id,toggleThin,setMounted])
 
-  if(!mounted)return<ArankpageSkeleton/>
-  return<main id={id}className={className}>
+  if(!mounted)
+    return<ArankpageSkeleton/>
+
+  return<main id={id}className={`rankpage ${className}`}>
     <Header h1={h1}>
       <button id="thin-btn"onClick={handThic}title={
         `${script().rankpage.header.btns.list.switch1}${isThin?script().rankpage.header.btns.list.compact:script().rankpage.header.btns.list.detail}${script().rankpage.header.btns.list.switch2}`

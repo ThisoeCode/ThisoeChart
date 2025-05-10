@@ -8,91 +8,26 @@ export type cit = {
   id?:string
   title?:string
 }
+/**
+ * @example
+ * className,id,title,style
+ * className={className}id={id}title={title}style={style}
+ */
+export type cits = {
+  className?:string
+  id?:string
+  title?:string
+  style?:string
+}
 
 
 
-// Alist & Acard
 export interface Card{
   _no:string
   _rank:number
   _place:number
   _title:string
 }
-
-export type Oshi={
-  /** **PRIMARY KEY** */
-  ytid:`UC${string}`
-  ythandle?:`@${string}`
-  cat:string
-  name:string
-  avaUrl:string
-  mark:string
-  /** `null` when Kojin-zei */
-  org:string|null
-  otherLangNames:string[]
-  sotugyou:boolean|"Affiliated"
-
-  // optionals
-  xid?:`@${string}`
-  twitchid?:string
-  orgSub?:string
-  group?:string
-  /** Designer info */
-  mama?:{
-    /** Official name → Pixiv name → X name */
-    name:string
-    /** Pixiv */
-    pid?:number
-    /** X */
-    xid?:`@${string}`
-    /** Instagram */
-    iid?:string
-    /** Illustrator's PERSONAL domain only */
-    website?:string
-  }
-  ouenColor?:string|{
-    normal?:string
-    light?:string
-    dark?:string
-  }
-}&Card
-
-export type Song={
-  /** **PRIMARY KEY** */
-  ytid:string
-  name:string
-  /** is original */
-  isOri:boolean
-
-  // optionals
-  artists?:{
-    ori:{
-      composer?:string
-      arranger?:string
-      vocal?:string
-      /** MV illustrators or modelers */
-      ESTC?:string
-    }
-    cover?:{
-      mixArranger?:string
-      vocal?:string
-      /** MV illustrators or modelers */
-      ESTC?:string
-    }
-  }
-  holodex?:{
-    // /** @todo Contact holodex staff for the `songs` obj */
-    // songs?:{
-    //   ids:string[]
-    //   art?:string
-    // }
-    channel?:{
-      id:string
-      english_name?:string
-      photo?:string
-    }
-  }
-}&Card
 
 
 

@@ -118,6 +118,13 @@ rankpage:{
           hant: '列表',
         },
       },
+      lang:{
+        en:'Switch Language',
+        ja:'言語',
+        ko:'언어 변경',
+        hans:'切换语言',
+        hant:'切換語言',
+      },
       oneTap:{
         en:'Sign in with Google',
         ja:'Googleでログイン',
@@ -140,6 +147,14 @@ oshi: {
   },
 },
 vsongs:{
+  h1:{
+    en:'Vtuber Songs Ranking',
+    ja:'V曲ランキング',
+    ko:'버튜버 노래 랭킹',
+    hans:'VTB歌曲排行',
+    hant:'Vtuber歌曲排行',
+    ina:'Lovely Carminas',
+  },
   
 },
 settings:{

@@ -1,6 +1,7 @@
 import Acard from "@/components/A/card"
 import Emoji from "@/components/emoji"
-import { cit, Oshi } from "@/lib/ts"
+import { cit } from "@/types"
+import type{ Oshi } from "@/types/oshi"
 import Image from "next/image"
 
 export default function Detail({v,i,className,id,title}:Readonly<{

@@ -1,5 +1,5 @@
 'use client'
-import type{ cit } from "@/lib/ts"
+import type{ cit } from "@/types"
 import { useState } from "react"
 
 /** 

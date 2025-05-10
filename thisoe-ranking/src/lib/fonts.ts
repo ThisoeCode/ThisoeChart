@@ -57,7 +57,10 @@ const VisitorScript = localFont({
 
 // EXPORT
 export const
-  Noto = {sans,sansJP,sansKR,sansSC,sansTC,serif,serifJP,serifKR,serifSC,serifTC},
-  visitorScript = VisitorScript,
+  Noto = {
+    sans,sansJP,sansKR,sansSC,sansTC,
+    serif,serifJP,serifKR,serifSC,serifTC,
+  },
+  inaScript = VisitorScript,
 
-  fontClass = `${Noto.sans.variable} ${Noto.sansJP.variable} ${Noto.sansKR.variable} ${Noto.sansSC.variable} ${Noto.sansTC.variable} ${Noto.serif.variable} ${Noto.serifJP.variable} ${Noto.serifKR.variable} ${Noto.serifSC.variable} ${Noto.serifTC.variable} ${visitorScript.variable}`
+  fontClasses = `${sans.variable} ${sansJP.variable} ${sansKR.variable} ${sansSC.variable} ${sansTC.variable} ${serif.variable} ${serifJP.variable} ${serifKR.variable} ${serifSC.variable} ${serifTC.variable} ${VisitorScript.variable}`
