@@ -1,5 +1,15 @@
 const _ = {
 
+metadata:{
+  title:{
+    en:'Thisoe Ranking',
+    ja:'Thisoeランキング',
+    ko:'Thisoe 랭킹',
+    hans:'Thisoe排行',
+    hant:'Thisoe排行',
+  },
+},
+
 langs:{
   "English":{
     en:'English',
@@ -166,12 +176,26 @@ settings:{
     ina:'Configurations',
   },
   auth:{
-    title:{ en:'My Account',
-      ja:'アカウント',
-      ko:'계정',
-      hans:'账户',
-      hant:'我的帳號',
+    title:{ en:'Thisoe Account',
+      ja:'Thisoeアカウント',
+      ko:'Thisoe 계정',
+      hans:'Thisoe账户',
+      hant:'Thisoe帳號',
       ina:'I',
+    },
+    saveBtn:{ en:'Save Changes',
+      ja:'保存',
+      ko:'저장',
+      hans:'保存',
+      hant:'保存',
+      ina:'Update',
+    },
+    saveing:{ en:'Saving...',
+      ja:'保存中...',
+      ko:'저장중...',
+      hans:'保存中...',
+      hant:'保存中...',
+      ina:'Updating',
     },
     signin:{ en:'Sign In',
       ja:'ログイン',

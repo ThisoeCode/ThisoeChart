@@ -4,6 +4,14 @@ isServer = !isClient,
 
 
 
+modImgSize=(url:string,size:number)=>{
+  if(url.includes('=s'))
+    return url.split('=')[0]+'=s'+size+'-c'
+  return url
+},
+
+
+
 /** `Store` wrapper (for `localStorage`) */
 store = <T=string>(key:string):Store<T> => {
   // Check if is client component

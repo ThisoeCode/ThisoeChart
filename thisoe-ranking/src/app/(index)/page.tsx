@@ -4,7 +4,9 @@ import { redirect } from "next/navigation"
 
 export default function _(){
   redirect('/oshi')
-  return<main>
+  // TODO: remove redirect
+  // TODO: Add `_.css` for #homepage
+  return<main id="homepage">
     <h1 style={{fontFamily:"var(--sans)"}}>Thisoe Ranking</h1>
     <Link href='/oshi'className="home-card">
       {script().oshi.h1}

@@ -29,7 +29,6 @@
     background-color:var(--thisoe);
     color:#fff;
     font-size:16pt;
-    font-family:var(--sans) !important;
     cursor:pointer;
     transition:background-color .2s ease;
 
@@ -55,6 +54,31 @@
     }&button:hover{
       filter:brightness(1.2);
       outline:aquamarine solid 1px;
+    }
+  }
+}
+
+#user-edit{
+  & input{
+    all:unset;
+    padding:3pt;
+    font-family:var(--serif);
+    &:focus{
+      outline:aquamarine solid 1px;
+    }
+  }
+  & #savechanges-btn{
+    all:unset;
+    padding:3pt;
+    font-size:16pt;
+    font-family:var(--serif);
+    cursor:pointer;
+    &:disabled{
+      opacity:0.5;
+      cursor:default;
+    }
+    &:not(:disabled):hover{
+      scale:1.05;
     }
   }
 }

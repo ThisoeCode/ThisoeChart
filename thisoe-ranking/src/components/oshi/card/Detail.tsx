@@ -15,6 +15,5 @@ export default function Detail({v,i,className,id,title}:Readonly<{
     <Emoji><h2>{i===0?'👑':rank}</h2></Emoji>
     <Image width={50}height={50}src={v.avaUrl}alt={v.name+' avatar'}/>
     <Emoji><h3>{v._title} {v.mark}</h3></Emoji>
-    {v.mama && <p>Designer: {v.mama.name}</p>}
   </Acard>
 }

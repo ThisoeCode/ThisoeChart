@@ -20,8 +20,11 @@ export default async function insu(){
 }
 
 // Export COLLECTIONs
-const DB = async(col:string)=>{
+const COL = async(col:string)=>{
   const {db} = await insu()
   return db.collection(col)
 }
-export const userDB = await DB(env.DB_USER)
+
+export const
+  userDB = await COL(env.DB_USER),
+  chartDB= await COL(env.DB_CHART)

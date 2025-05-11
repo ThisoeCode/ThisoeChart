@@ -6,10 +6,12 @@ import { useContext, useEffect, useState } from "react"
 import Header from './Header'
 import ArankpageSkeleton from '../skeletons/rankpage'
 import MountProvider, { MountContext } from '@/contexts/mount'
+import type{ User } from 'next-auth'
 
 type Props = Readonly<{
   Anew:React.ReactNode
   h1:string
+  auth:User|null
   /** Put `<Alist>` in. */
   children:React.ReactNode
   toggleThin:(isThin:boolean)=>void
@@ -17,13 +19,17 @@ type Props = Readonly<{
   className?:string
 }>
 
+
+
 export default function Arankpage(attr:Props){
   return<MountProvider>
-    <InnerRankpage {...attr}/>
+    <Rankpage{...attr}/>
   </MountProvider>
 }
 
-const InnerRankpage=(
+
+
+const Rankpage=(
   {Anew,h1,children,toggleThin,id,className}:Props
 )=>{
   const

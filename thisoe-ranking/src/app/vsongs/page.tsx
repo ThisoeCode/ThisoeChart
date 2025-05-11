@@ -1,2 +1,7 @@
 import Song from "@/components/vsongs"
-export default function _(){return<Song/>}
+import { session } from "@/lib/auth"
+
+export default async function _(){
+  const { clientUser } = await session()
+  return<Song auth={clientUser}/>
+}

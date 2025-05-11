@@ -13,10 +13,10 @@ export default function Alist<C extends Card>(
     ctt:C[]
     /**
      * @example
-     * const [songs, setSongs] = useState<Song[]>({});
+     * const [songs, setSongs] = useState<Song[]>({})
      * const handlePlaceChange = (newOrder: (Song & Card)[]) => {
-     *   setSongs(newOrder);
-     * };
+     *   setSongs(newOrder)
+     * }
      */
     onPlaceChange?: (newPlace:C[])=>void
   } & cit>

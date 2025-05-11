@@ -43,7 +43,7 @@ export default function Amod({children,open,onClose,onSubmit,disableSubBtn,class
 
 /////// jsx ///////
   return<dialog  ref={ref} id={id}className={className}title={title}>
-    <button onClick={close}><i className="x svg"/></button>
+    <button onClick={close}><i className="close svg"/></button>
     {children}
     <button onClick={onSubmit}disabled={disableSubBtn}>
       <i className="submit-amod svg"/>
