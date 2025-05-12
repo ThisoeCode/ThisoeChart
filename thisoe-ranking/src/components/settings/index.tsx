@@ -16,11 +16,15 @@ export default function SettingsPage({user}:Readonly<{
       <h1>{script().settings.title}</h1>
     </header>
 
-    <h2>{script().settings.auth.title}</h2>
-    {user&&<UserEdit user={user}/>}
-    <SignToggleBtn/>
+    <i>
+      <h2>{script().settings.auth.title}</h2>
+      {user&&<UserEdit user={user}/>}
+      <SignToggleBtn/>
+    </i><hr/>
 
-    <h2>{script().settings.lang.title}</h2>
-    <LangMenu id="lang-menu"/>
+    <i>
+      <h2>{script().settings.lang.title}</h2>
+      <LangMenu id="lang-menu"/>
+    </i>
   </i>
 }

@@ -13,6 +13,7 @@ html{
   --serif: var(--font-noto-serif);
   /* lengths */
   --header-height:57pt;
+  --page-width:min(720pt,90vw);
 }
 
 /* fonts */

@@ -2,7 +2,7 @@
 main.rankpage{
   &>i{
     margin:var(--header-height) auto 30pt;
-    width:min(720pt,90vw);
+    width:var(--page-width);
   }
   &>header{
     position:fixed; top:0;left:0;

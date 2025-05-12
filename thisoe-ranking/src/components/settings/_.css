@@ -1,5 +1,6 @@
 #settings{
-  margin-top:var(--header-height);
+  width:var(--page-width);
+  margin:var(--header-height) auto 39pt;
 
   &>*{margin:auto}
 
@@ -19,11 +20,19 @@
     }
   }
 
+  & hr{
+    width:99%;height:1pt;
+    margin:18pt auto;
+    border-radius:9pt;
+    background-color:var(--thisoe);
+  }
+
   & button:has(.signout),
   & button:has(.signin){
     display:flex; flex-direction:row;
     align-items:center;
     gap:3pt;
+    margin:auto;
     padding:9pt 16pt;
     border-radius:99pt;
     background-color:var(--thisoe);
@@ -45,40 +54,119 @@
   }
 
   & #lang-menu{
-    gap:9pt;
-    &button{
-      background-color:var(--thisoe);
-      border:none;
-      border-radius:4pt;
-      padding:4pt;
-    }&button:hover{
-      filter:brightness(1.2);
-      outline:aquamarine solid 1px;
+    gap:3pt;
+    &>button{
+      border-radius:3pt;
+      padding:3pt;
+      text-align:center;
+      outline:transparent solid 1pt;
+      transition:outline-color .2s ease;
+    }&>button:hover{
+      outline-color:var(--thisoe);
     }
   }
 }
 
+
+
 #user-edit{
+  --inputs-font-size:16pt;
+
+  margin:18pt auto;
+
+  &>*{margin:auto}
   & input{
     all:unset;
-    padding:3pt;
+    font-size:var(--inputs-font-size);
     font-family:var(--serif);
+  }
+
+  & #username{
+    width:90%; margin:auto;
+    font-size:30pt;
+    text-align:center;
+    &:hover{
+      outline:var(--thisoe) solid 1px;
+    }
     &:focus{
-      outline:aquamarine solid 1px;
+      outline:var(--thisoe) solid 2px;
     }
   }
+
+  & .wrap{
+    flex-direction:row;
+    align-items:center;
+
+    & .svg-wrap{
+      align-items:end;
+      width:calc(var(--inputs-font-size) * 2);
+      height:var(--inputs-font-size);
+      margin-right:3pt;
+      &>.svg{width:auto;height:100%}
+    }
+    & input{
+      width:min(233pt,50vw);
+    }
+    & input,& label{
+      font-weight:300;
+      font-family:var(--sans);
+    }
+  }
+  & .outline-wrap{
+    flex-direction:row;
+    align-items:center;
+    &:has(> input:hover){
+      outline:var(--thisoe) solid 1px;
+    }
+    &:has(> input:focus){
+      outline:var(--thisoe) solid 2px;
+    }
+  }
+
+  & #handle-wrap{
+    display: block;
+    width: max-content;
+    padding-left:9pt;
+
+    &>*{
+      font-size:12pt;
+      font-weight:300;
+      font-family:var(--sans);
+      color:#111;
+      .dark &{color:#ccc}
+    }
+    &>input{padding:1pt 9pt 1pt 0;}
+  }
+
+
+  & #socials-wrap{
+    margin:18pt auto;
+    gap:7pt;
+
+    & .x.svg{aspect-ratio:300/271;}
+    & .yt.svg{aspect-ratio:313.233/216.023;}
+  }
+
   & #savechanges-btn{
     all:unset;
+    margin:auto;
     padding:3pt;
     font-size:16pt;
-    font-family:var(--serif);
     cursor:pointer;
+    transition:opacity .2s ease;
+    text-decoration:underline;
     &:disabled{
       opacity:0.5;
       cursor:default;
     }
     &:not(:disabled):hover{
-      scale:1.05;
+      color:var(--thisoe);
     }
+  }
+}
+
+/* phone */
+@media (max-width: 768px) {
+  #settings{
   }
 }
