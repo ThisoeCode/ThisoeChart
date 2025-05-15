@@ -221,6 +221,15 @@ settings:{
       ina:'Scripts',
     },
   },
+  theme:{
+    title:{ en:'Dark Mode',
+      ja:'ダークモード',
+      ko:'다크모드',
+      hans:'深色模式',
+      hant:'暗色模式',
+      ina:'Inky',
+    },
+  },
 },
 
 

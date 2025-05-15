@@ -125,6 +125,7 @@ export default function UserEdit({user}:{user:UserMeta}){
       value={meta.name}
       onChange={nameChange}
       onKeyDown={enterSave}
+      autoComplete="nickname"
     />
 
     <i id="handle-wrap" className="outline-wrap">
@@ -134,6 +135,7 @@ export default function UserEdit({user}:{user:UserMeta}){
         value={meta.handle}
         onChange={handleChange}
         onKeyDown={enterSave}
+        autoComplete="off"
       />
     </i>
 
@@ -148,6 +150,7 @@ export default function UserEdit({user}:{user:UserMeta}){
             value={meta.social.x}
             onChange={xChange}
             onKeyDown={enterSave}
+            autoComplete="off"
           />
         </i>
       </i>
@@ -161,6 +164,7 @@ export default function UserEdit({user}:{user:UserMeta}){
             value={meta.social.yt}
             onChange={ytChange}
             onKeyDown={enterSave}
+            autoComplete="off"
           />
         </i>
       </i>

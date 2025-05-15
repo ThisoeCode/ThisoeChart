@@ -35,7 +35,6 @@ const Rankpage=(
   const
     thin='y', thic='n',
     [isThin,setThin]=useState(store(id+'_thin').get===thin?true:false),
-    // ,
     {mounted,setMounted} = useContext(MountContext),
     handThic=()=>{
       const newThin = !isThin

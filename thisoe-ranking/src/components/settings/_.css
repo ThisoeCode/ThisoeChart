@@ -22,7 +22,7 @@
 
   & hr{
     width:99%;height:1pt;
-    margin:18pt auto;
+    margin:27pt auto 7pt;
     border-radius:9pt;
     background-color:var(--thisoe);
   }
@@ -49,20 +49,31 @@
     {background-color:tomato}
 
   & h2{
-    margin:21pt auto 9pt !important;
+    margin:9pt auto !important;
     font-size:25pt;
   }
 
   & #lang-menu{
-    gap:3pt;
     &>button{
       border-radius:3pt;
-      padding:3pt;
+      padding:7pt 16pt;
       text-align:center;
       outline:transparent solid 1pt;
+      cursor:pointer;
       transition:outline-color .2s ease;
     }&>button:hover{
       outline-color:var(--thisoe);
+    }
+  }
+
+  & #theme-wrap{
+    &>*{margin:auto}
+    &>button{
+      width:39pt;height:39pt;
+      cursor:pointer;
+      transition:scale .12s ease;
+      &:hover{scale:1.1}
+      &:active{scale:.93}
     }
   }
 }
@@ -75,16 +86,22 @@
   margin:18pt auto;
 
   &>*{margin:auto}
+  & label{
+    user-select:none;
+    cursor:text;
+  }
   & input{
     all:unset;
     font-size:var(--inputs-font-size);
     font-family:var(--serif);
+    line-height:1;
   }
 
   & #username{
     width:90%; margin:auto;
     font-size:30pt;
     text-align:center;
+    border-radius:3px;
     &:hover{
       outline:var(--thisoe) solid 1px;
     }
@@ -115,6 +132,8 @@
   & .outline-wrap{
     flex-direction:row;
     align-items:center;
+    border-radius:3px;
+
     &:has(> input:hover){
       outline:var(--thisoe) solid 1px;
     }
@@ -127,6 +146,7 @@
     display: block;
     width: max-content;
     padding-left:9pt;
+    border-radius:3px;
 
     &>*{
       font-size:12pt;
@@ -140,7 +160,7 @@
 
 
   & #socials-wrap{
-    margin:18pt auto;
+    margin:27pt auto 9pt;
     gap:7pt;
 
     & .x.svg{aspect-ratio:300/271;}
@@ -150,18 +170,20 @@
   & #savechanges-btn{
     all:unset;
     margin:auto;
-    padding:3pt;
+    padding:3pt 18pt;
     font-size:16pt;
+    font-family:var(--serif);
     cursor:pointer;
     transition:opacity .2s ease;
-    text-decoration:underline;
+    outline:var(--thisoe) solid 3px;
+    border-radius:99pt;
+    transition:.2s ease;
     &:disabled{
       opacity:0.5;
       cursor:default;
     }
-    &:not(:disabled):hover{
-      color:var(--thisoe);
-    }
+    &:not(:disabled):hover{background-color:var(--thisoe)}
+    &:not(:disabled):active{scale:.95;}
   }
 }
 

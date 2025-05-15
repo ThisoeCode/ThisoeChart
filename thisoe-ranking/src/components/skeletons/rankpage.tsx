@@ -6,7 +6,8 @@ export default function ArankpageSkeleton(){
     <header className="skeleton">
       <h1/>
       <i id="btn-wrap">
-        <button/><button/><button/><button style={{borderRadius:'999pt'}}/>
+        <button/><button/><button/>
+        <button style={{borderRadius:'999pt'}}/>
       </i>
     </header>
     <i className="skeleton"><ol>

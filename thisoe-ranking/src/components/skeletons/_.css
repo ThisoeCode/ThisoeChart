@@ -20,15 +20,32 @@
 .skeleton{
   main:has(&){cursor:progress}
 
-  /* HEADER */
-  & *:not(ol):not(#btn-wrap){
+  /* SKELETON ANIMATION */
+  & *:not(
+    #lang-menu,
+    /* rankpage */
+    ol,
+    #btn-wrap,
+    /* settings */
+    header,hr,
+    #settings h1,
+    #settings h2,
+    #settings >i,
+    #user-edit,
+    #avatar-btn,
+    #socials-wrap
+  ){
     display:block;
     border-radius:9pt;
     background:var(--skeleton-gradient);
     background-size:var(--skeleton-size);
     animation:var(--skeleton-animation);
   }
-  &>h1::before{
+
+
+
+  /* RANKPAGE */
+  .rankpage>&>h1::after{
     content:'　　　　　　　';
   }
   &>#btn-wrap{
@@ -39,7 +56,6 @@
     &>button:active{scale:1.1}
   }
 
-  /* rankpage */
   &>ol{
     display:flex;
     gap:10pt;
@@ -50,12 +66,35 @@
     }
   }
 
-  /* DARK */
-  /* .dark &{
-    & header{
-      background-color:#011007;
+
+
+  /* SETTINGS */
+  &#settings{
+    & #avatar-btn>div{border-radius:999pt}
+
+    & #username{
+      margin-top:12pt;
+      &:hover{outline:0}
+      &::after{content:'　　　　　　　'}
     }
-  } */
+    & #handle-wrap{
+      margin-top:9pt;
+      line-height:1.2;
+      &::after{content:'　　　　　　　'}
+    }
+    & #socials-wrap>.wrap{
+      &::after{content:'　　　　　　　　　　　　　　'}
+    }
+    & button:has(.signout){
+      &::after{content:'　　　　　'}
+    }
+
+    & #savechanges-btn,
+    & #lang-menu button{
+      margin-top:9pt;
+      &::after{content:'　　　　　　　'}
+    }
+  }
 }
 
 
